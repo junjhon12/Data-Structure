@@ -46,7 +46,7 @@ public class Main {
     }
 
     //Tuesday
-    // Binary search function where the array is rotated or not sorted
+    // Binary search function where the array is rotated/ot sorted
     public static int binarySearch_Lvl2(int[] c, int a) {
         int low = 0; // The array low and high
         int high = c.length - 1;
