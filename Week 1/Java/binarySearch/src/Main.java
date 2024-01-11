@@ -61,7 +61,7 @@ public class Main {
                     high = mid - 1; // Sets the high to the left of the middle
                 }
         }   else {
-                if (a <= c[mid] || a > c[high]) { // Checks if the number is in the middle, number is less than the middle, or number is greater than the high
+                if (a < c[mid] || a > c[high]) { // Checks if the number is in the middle, number is less than the middle, or number is greater than the high
                     high = mid - 1; // Sets the high to the left of the middle
                 }else {
                     low = mid + 1; // Sets the low to the right of the middle
