@@ -23,6 +23,7 @@ public class week1 {
             System.out.println("The target is in the array " + result2);
         }
     }
+    // --------------------------------------------------------------------------------------------------------------
 
     // Monday - Binary search Level 1
     // int[] array = {1,2,3,4,5,6,7,8,9};
@@ -81,8 +82,8 @@ public class week1 {
             if (target == array[middleIndex]) { // if target == 0, 4 == 0 NO
                 return middleIndex;
                 // searching on the left side
-            } else if (array[leftIndex] <= array[middleIndex]) { // if 6 <= 0, 6 <= 0 NO
-                if (target >= array[middleIndex] || target < array[leftIndex]) { // if target >= 0 or target < 6
+            } else if (array[leftIndex] < array[middleIndex]) { // if 6 <= 0, 6 <= 0 NO
+                if (target > array[middleIndex] || target < array[leftIndex]) { // if target >= 0 or target < 6
                     leftIndex = middleIndex + 1; // leftIndex will be 1, searching between [7,8,9,0]
                 } else {
                     rightIndex = middleIndex - 1; // rightIndex will be 3, searching between [6,7,8,9]
@@ -97,5 +98,22 @@ public class week1 {
             }
         }
         return -1;
+
+        //Simulation of the binary search level 2
+        // Array : [6, 7, 8, 9, 0, 1, 2, 3, 4, 5]
+        // Target: 4
+        // int leftIndex = 0; so 6
+        // int rightIndex = 9; so 5
+        // int middleIndex = 0 + (9 - 0) / 2 = 4; so 0
+        // if (4 == 0) NO
+        // else if (6 <= 0) NO
+        // else if (6 > 0) YES
+        //   if (4 < 0 || 4 > 5) NO
+        //   else (4 > 2 || 4 < 5) YES
+        //    leftIndex = 3; so 3 [3,4,5]
+        // int middleIndex = 3 + (5 - 3) / 2 = 4; so 4
+
+        
+        
     }
 }
