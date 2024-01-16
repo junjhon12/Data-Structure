@@ -34,34 +34,7 @@ def binary_search_lvl2(target, array):
                 left = mid + 1 # search right side
     return 'Not Found'
 
-def find_Minumum (array):
-    left = 0
-    right = len(array)-1
-    while left <= right:
-        mid = left + (right - left) // 2
-        if target == array[mid]:
-            return mid
-        elif array[left] < array[mid]:
-            if target > array[mid] or target < array[left]:
-                left = mid + 1
-                # search from the left side
-                # If 
-                while left <= right:
-                    leftMid = left + (right - left) // 2
-                    if target == array[leftMid]:
-                        return leftMid
-                    elif array[left] < array[leftMid]:
-                        if target > array[leftMid] or target < array[left]:
-                            left = leftMid + 1
-                        else:
-                            right = leftMid - 1
-                    else:
-                        if target < array[leftMid] or target > array[right]:
-                            right = leftMid - 1
-                        else:
-                            left = leftMid + 1
-            else:
-                right = mid - 1
+
                 
 
 
@@ -83,7 +56,7 @@ print(result2)
 
 array = [6, 7, 8, 9, 0, 1, 2, 3, 4, 5]
 target = 2
-result = binary_search_lvl2(target,array)
+result = binary_search_lvl1(target,array)
 print(result)
 
 # Wendesday problem

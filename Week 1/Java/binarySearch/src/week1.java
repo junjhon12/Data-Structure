@@ -2,11 +2,11 @@ public class week1 {
     public static void main(String[] args) {
         
         //Monday - Binary search Level 1
-        int[] array = {1,2,3,4,5,6,7,8,9,0}; // The array
-        int target = 5; // The number to search
+        int[] array = {-1,0,3,5,9,12}; // The array
+        int target = 9; // The number to search
 
         // Using binary search level 1
-        int result = binary_Search_Lvl1(array, target);
+        int result = binary_Search_Lvl1_Recursive(array, target);
         if (result == -1) { // Checks if the number is in the array
             System.out.println("The number is not in the array"); 
         } else {
@@ -27,6 +27,7 @@ public class week1 {
     // Monday - Binary search Level 1
     // int[] array = {1,2,3,4,5,6,7,8,9};
     // int target = 5;
+    // Interative approach
     public static int binary_Search_Lvl1(int[] array, int target) {
         int leftIndex = 0; // leftIndex element will be 1
         int rightIndex = array.length - 1; // rightIndex element will be 9
@@ -46,6 +47,27 @@ public class week1 {
         }
         return -1;
     }
+
+    // Recursive approach
+    public static int binary_Search_Lvl1_Recursive(int[] array, int target) {
+        int leftIndex = 0; // leftIndex element will be 1
+        int rightIndex = array.length - 1; // rightIndex element will be 9
+        int middleIndex = leftIndex + (rightIndex - leftIndex) / 2;
+
+        if (leftIndex <= rightIndex) {
+            if (target == array[middleIndex]) { // if target == 5, return middleIndex
+                return middleIndex;
+                // searching on the left side
+            } else if (target < array[middleIndex]) { // if target < 5, rightIndex will be 4, searching between [1,2,3,4]
+                rightIndex = middleIndex - 1;
+                // searching on the right side
+            } else if (target > array[middleIndex]) { // if target > 5, leftIndex will be 6, searching between [6,7,8,9]
+                leftIndex = middleIndex + 1;
+            }
+        }
+        return -1;
+    }
+
 
     // Tuesday - Binary search Level 2 - Rotated array
     // int[] array = {6, 7, 8, 9, 0, 1, 2, 3, 4, 5};
