@@ -18,19 +18,24 @@ def BinarySearch_Lvl2(array, target):
     right = len(array) - 1
     while left <= right:
         middle = left + (right - left) // 2
-        
+        # Checks if target is at middle
         if target == middle:
             return f'Found Target: {target} at index {middle}'
+        # Checks if left side is sorted
         elif array[left] <= array[middle]:
             if target > array[middle] or target < array[left]:
+                # If not sorted, search right side
                 left = middle + 1
             else:
+                # If sorted, search left side
                 right = middle - 1
-        else:
+        else:# Checks if right side is sorted
             if target < array[middle] or target > array[right]:
-                right = middle - 1
+                # If not sorted, search left side
+                left = middle - 1
             else:
-                left = middle + 1  
+                # If sorted, search right side
+                right = middle + 1
 
 array = [1,2,3,4,5,6,7,8,9,10]
 target = 5
