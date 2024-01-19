@@ -86,9 +86,9 @@ def BinarySearch_Lvl4(grid, target):
         middleRow = topRow + (bottomRow - topRow) // 2
 
         if target > grid[middleRow][-1]:
-            topRow = middleRow + 1
+            topRow = middleRow + 1 #search bottom half
         elif target < grid[middleRow][0]:
-            bottomRow = middleRow - 1
+            bottomRow = middleRow - 1 #search top half
         else:
             break
         
@@ -109,7 +109,7 @@ def BinarySearch_Lvl4(grid, target):
     
  
 #Success
-array = [5,6,7,8,9,10,0,2,3,4]
+array = [5,6,7,8,9,10,1,2,3,4]
 print(BinarySearch_Lvl3(array))
 
 # Row is 3, 5, 10, 12
