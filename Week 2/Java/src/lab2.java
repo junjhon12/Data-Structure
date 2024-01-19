@@ -9,7 +9,7 @@ public class lab2 {
     public static int guessMyNumber(int max) {
         int min = 0;
         while (max < min) { // Checks if the number is positive
-            max = Integer.parseInt(System.console().readLine("Enter a positive integer for n: "));
+            max = (Integer.parseInt(System.console().readLine("Enter a positive integer for n: "))-1);
         }
         System.out.println("Welcome to Guess My Number!"); // Introduction after the number is positive
         while (min <= max) { // Checks if the number is in the array
@@ -18,7 +18,11 @@ public class lab2 {
                 + "\nIs your number " + middle + "?"
                 + "\nPlease enter C for correct, H for too high, or L for too low."
                 + "\nEnter your response H/L/C: ");
-            char response = System.console().readLine().charAt(0); //
+            char response = System.console().readLine().charAt(0);
+            while (response != 'H' && response != 'L' && response != 'C') { // Checks if the response is valid
+                System.out.print("Please enter a valid response H/L/C: ");
+                response = System.console().readLine().charAt(0);
+            }
             if (response == 'C') { // Checks if the number is correct
                 System.out.println("Thank you for playing Guess My Number!");
                 return middle;
