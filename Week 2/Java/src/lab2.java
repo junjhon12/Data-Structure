@@ -2,7 +2,7 @@ import java.lang.Math;
 
 public class lab2 {
     public static void main(String[] args) {
-        int max = (Integer.parseInt(System.console().readLine("Enter n: ")) -1);
+        int max = (Integer.parseInt(System.console().readLine("Enter n: ")) - 1);
         int result = guessMyNumber(max);
     }
     // guessMyNumber function
@@ -20,15 +20,15 @@ public class lab2 {
                 + "\nEnter your response H/L/C: ");
             char response = System.console().readLine().charAt(0);
             while (response != 'H' && response != 'L' && response != 'C') { // Checks if the response is valid
-                System.out.print("Please enter a valid response H/L/C: ");
-                response = System.console().readLine().charAt(0);
+                System.out.print("Enter your response H/L/C: ");
+                response = Character.toUpperCase(System.console().readLine().charAt(0));
             }
             if (response == 'C') { // Checks if the number is correct
                 System.out.println("Thank you for playing Guess My Number!");
                 return middle;
-            } else if (response == 'H') {
+            } else if (response == 'H') { // Checks if the number is too high
                 max = middle - 1;
-            } else if (response == 'L') {
+            } else if (response == 'L') { // Checks if the number is too low
                 min = middle + 1;
             }
         }return -1; // Returns -1 if the number is not in the array
