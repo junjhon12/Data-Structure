@@ -29,21 +29,7 @@ def BinarySearch_Lvl3(array):
             left = middle + 1
         else: # right side is sorted
             right = middle - 1
-    return current_min
-'''
-def BinarySearch_Lvl3_2(array):
-    left = 0
-    right = len(array) - 1
-    current_max = right
-    
-    while left <= right:
-        middle = left + (right - left) // 2
-        if array[right] >= array[middle]:
-            right = middle - 1
-        else:
-            left = middle + 1
-    return current_max
-'''
+    return 'The minimum element is ' + str(current_min) + '.'
 
 # Simplistic solution
 # loop within loop
@@ -109,7 +95,7 @@ def BinarySearch_Lvl4(grid, target):
     
  
 #Success
-array = [5,6,7,8,9,10,0,2,3,4]
+array = [7,8,9,5,6]
 print(BinarySearch_Lvl3(array))
 
 # Row is 3, 5, 10, 12
