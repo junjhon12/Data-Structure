@@ -17,10 +17,10 @@ public class lab2 {
         System.out.println("Welcome to Guess My Number!");
         // This loop will guess the number
         while (0 <= number) {
-            System.out.println("Please think of a number between 0 and " + number + ".");
-            System.out.println("Is your number " + Math.round(number / 2f) + "?");
-            System.out.println("Please enter C for correct, H for too high, or L for too low.");
-            System.out.print("Enter your response H/L/C: ");
+            System.out.println("Please think of a number between 0 and " + number + "." 
+            + "\nIs your number " + Math.round(number / 2f) + "?"
+            + "\nPlease enter C for correct, H for too high, or L for too low."
+            + "\nEnter your response H/L/C: ");
             char response = new java.util.Scanner(System.in).next().charAt(0);
             // This loop will check if the response is valid
             while (response != 'C' && response != 'H' && response != 'L') {
