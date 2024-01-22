@@ -85,13 +85,14 @@ def BinarySearch_Lvl4(grid, target):
     topRow = 0
     bottomRow = len(grid) - 1
     
-    while topRow <= bottomRow: # Checks if grid is valid
-        middleRow = topRow + (bottomRow - topRow) // 2 # Gets middle index
-        if target > grid[middleRow][-1]: # Checks if target is in bottom half
-            topRow = middleRow + 1 # Searches bottom half
-        elif target < grid[middleRow][0]: # Checks if target is in top half
-            bottomRow = middleRow - 1 # Searches top half
-        else: # Target is in middle row
+    while topRow <= bottomRow:
+        middleRow = topRow + (bottomRow - topRow) // 2
+
+        if target > grid[middleRow][-1]:
+            topRow = middleRow + 1
+        elif target < grid[middleRow][0]:
+            bottomRow = middleRow - 1
+        else:
             break
     
     leftColumn = 0 
@@ -108,7 +109,7 @@ def BinarySearch_Lvl4(grid, target):
     
  
 #Success
-array = [5,6,7,8,9,1,2,3,4]
+array = [5,6,7,8,9,10,0,2,3,4]
 print(BinarySearch_Lvl3(array))
 
 # Row is 3, 5, 10, 12
