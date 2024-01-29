@@ -30,6 +30,7 @@ def rearrange_array(a, x):
             equal.append(element)
         else: #if element is greater than the pivot
             greater.append(element)
+
     return less + equal + greater
 
 #2
@@ -39,7 +40,7 @@ def rearrange_arrayP2(a,x):
     mid = 0 
     high = len(a)-1 
     
-    while mid <= high:
+    while mid < high:
         if a[mid] < x:  #if element is less than x
             a[low],a[mid] = a[mid],a[low] #swap elements
             low += 1 #low moves to the right
@@ -49,11 +50,18 @@ def rearrange_arrayP2(a,x):
             high -= 1 #high moves to the left
         else: #if element is equal to x
             mid += 1 #mid moves to the right
+    
     return a
    
 
-a = [3,5,2,6,8,4,4,6,4,4,3]
-x = 5
+a = [2, 3, 4, 2, 3, 5, 2]
+x = 3
 print(rearrange_array(a, x))
 print(rearrange_arrayP2(a, x))
 
+# Test cases
+# Edge cases - Empty array, Null input, 'X' value out of bound
+# Base cases - Single element array (less, greater, equal to), Two element
+# Reular cases - single element in pivot, Multiple pivots(given case)
+# [4, 4, 4, 4, 4], x= 2
+# [2, 3, 4, 2, 3, 5, 2], x = 3 output = [2, 2, 2, 3, 3, 5, 4]

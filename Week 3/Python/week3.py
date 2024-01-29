@@ -6,7 +6,7 @@
 def groupAnagrams(A):
     dictionary = {} #This is used to store the sorted word as key and the list of words as value
     for word in A:
-        sortedWord = "".join(sorted(word)) #This is used to sort the word
+        sortedWord = "".join(sorted(word)) #This is used to sort the word in alphabetical order
         if sortedWord not in dictionary: #Check if the sorted word is in the dictionary
             dictionary[sortedWord] = [word] #If not, add the sorted word as key and the word as value
         else: 
@@ -35,4 +35,21 @@ print(groupAnagrams(A))
 #output = 
 # [["ate","eat","tea"],["nat","tan"],["bat"]]
 # Time complexity: O(n*m*log(m)) -> n is the number of words in the list and m is the avg length of each word
+
+#Time complexity Breakdown:
+# n -> number of words in the list
+# m -> avg length of each word
+# for word in A -> O(n)
+# sortedWord = "".join(sorted(word)) -> O(m*log(m))
+# if sortedWord not in dictionary -> O(1)
+# dictionary[sortedWord] = [word] -> O(1)
+# dictionary[sortedWord].append(word) -> O(1)
+# return list(dictionary.values()) -> O(n)
+# Total = O(n*m*log(m))
+
 # Space complexity: O(n*m) -> n is the number of words in the list and m is the avg length of each word
+
+#Space complexity Breakdown:
+# n -> number of words in the list
+# m -> avg length of each word
+# dictionary = {} -> O(n*m)
