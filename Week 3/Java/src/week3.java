@@ -24,14 +24,5 @@ public class week3{
 
         // n -> number of elements in input
         // m -> average length
-
-        Dictionary<String, String> dictionary = new Dictionary<String, String>();
-        for (String word : A) {
-            String sortedWord = "".join(sorted(word));
-            if (!dictionary.containsKey(sortedWord)) {
-                dictionary.put(sortedWord, new ArrayList<String>());
-            }
-            else
-        }
     }
 }
