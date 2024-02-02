@@ -100,6 +100,10 @@ for i in range(3):
         matrix =    [[1, 4, 7]
                     [2, 5, 8]
                     [3, 6, 9]]
-
+Then for i in range(3): it will reverse each row
+    matrix[i] = matrix[i][::-1]
+    matrix =    [[7, 4, 1]
+                [8, 5, 2]
+                [9, 6, 3]]
 
 '''
