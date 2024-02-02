@@ -44,13 +44,13 @@ n = 5
 '''
 
 def fibonacci(n):
-    if n > 20:
+    if n > 20:  # stop if the number is higher than 20
         return None
-    elif n == 0:
+    elif n == 0: # base case
         return 0
-    elif n == 1:
+    elif n == 1: # base case
         return 1
-    else:
+    else: # recursive case
         return (fibonacci(n-1) + fibonacci(n-2))
 
     
