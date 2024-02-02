@@ -1,3 +1,4 @@
+import java.util.HashMap;
 /**
  * 1/29/2024 Week 4 - Recursion Introduction
  *  Fibonacci Sequence: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
@@ -46,6 +47,9 @@ public class week4 {
         int n = 5;
         System.out.println(fibonacci(n));
 
+        String message = "121";
+        System.out.println(decode(message));
+
         /**
          * n = 5
          *                        F(5)
@@ -61,6 +65,9 @@ public class week4 {
          * TIME COMPLEXITY: O(2^n)
          * SPACE COMPLEXITY: O(n)
          */
+
+         String message = "0";
+        System.out.println(decode(message));
     }
 
     //Recursive Method - Fibonacci
@@ -78,4 +85,79 @@ public class week4 {
         }
 
     }
+
+    /*
+     * Wednesdays 1/31/2024
+     *   1
+     *  n=5
+     *     | 1
+     *      n=4
+     *         | 2                        1,1,2,3,5
+     *          n=3                   f=0,1,1,2,3,5      The difference from Fibonacci is that the first two numbers are 1,1
+     *            | 3
+     *             n=2
+     *               | 5
+     *                n=1
+     * -----------------|
+     * 
+     * Decoding Problem        String '121' - (121) 'ABA' : 1|2|1 \
+     * A -> 1                               - (12|1) 'LA' : 12|1 ---> = 3 ways to decode
+     * B -> 2                               - (1|21) 'AU' : 1|21  /               
+     * C -> 3
+     * D -> 4
+     * E -> 5                  Leading 0 -> 0
+     * F -> 6                  NOTE: Anything [GREATER THAN 26] is not a valid encoding
+     * G -> 7
+     * H -> 8
+     * I -> 9
+     * J -> 10                 '11106' -> KJF Allowed
+     * K -> 11                 
+     * L -> 12
+     * M -> 13
+     * N -> 14
+     * O -> 15
+     * P -> 16
+     * Q -> 17
+     * R -> 18
+     * S -> 19
+     * T -> 20
+     * U -> 21
+     * V -> 22
+     * W -> 23
+     * X -> 24
+     * Y -> 25
+     * Z -> 26
+     * 
+     * Example: '121'
+     *                                             121
+     *                                           /     \
+     *                                          1       12
+     *                                         / \     /  \          There are 3 ways to decode '121'
+     *                                       2   21  1     X
+     *                                      / \ /  \/ \   
+     *                                     1   X   X    X
+     */
+
+    //Recursive Method - Decoding Problem for 1 step
+    
+    public static int decode(String message) {
+         Hashmap<Integer, Integer> docde_storage = new HashMap<>();
+         
+        
+        /**
+         * Professor's Solution
+         * def Decoding(self, S str) -> int:
+         * D = {len(s) : 1} 
+         * def decode(i)
+         * if s[i] == '0':
+         * return 0
+         * if i in D:
+         * return D[i]
+         * n_ways = decode(i + 1)
+         * if i + 1 < len(s) and s[i + 1] == '1' or (s[i + 1] == '2' and s[i + 2] in '0123456'):
+         * n_ways += 1
+         * D[i] = n_ways
+         */
+    } 
+
 }
