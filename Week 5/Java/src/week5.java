@@ -51,10 +51,27 @@ public class week5 {
     public static void main(String[] args) {
         
         int[] A = {31, 32, 34, 33};
-
+        System.out.println(lengthOfLIS(A));
 
     }
 
     // Find the length of the longest increasing subsequence
-
+    public static int lengthOfLIS(int[] A) {
+        int[] memo = new int[A.length];
+        for (int i = 0; i < A.length; i++) {
+            memo[i] = 1;
+        }
+        for (int i = A.length - 1; i >= 0; i--) {
+            for (int j = i + 1; j < A.length; j++) {
+                if (A[i] < A[j]) {
+                    memo[i] = Math.max(memo[i], memo[j] + 1);
+                }
+            }
+        }
+        int max = 0;
+        for (int i = 0; i < memo.length; i++) {
+            max = Math.max(max, memo[i]);
+        }
+        return max;
+    }
 }
