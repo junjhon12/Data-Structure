@@ -68,6 +68,8 @@ rotatedMatrix = rotateMatrix(matrix)
 print("\nRotated matrix in place:")
 rotatedMatrixInPlace = rotateInPlace(matrix_copy)
 
+#Time complexity: O(n^2) since we are iterating through the matrix twice
+#Space complexity: O(n^2) since we are creating a new matrix with the same size as the original matrix
 
 '''
 Simulation:

@@ -66,7 +66,6 @@ public class week4 {
          * SPACE COMPLEXITY: O(n)
          */
 
-         String message = "0";
         System.out.println(decode(message));
     }
 
@@ -140,9 +139,7 @@ public class week4 {
 
     //Recursive Method - Decoding Problem for 1 step
     
-    public static int decode(String message) {
-         Hashmap<Integer, Integer> docde_storage = new HashMap<>();
-         
+   
         
         /**
          * Professor's Solution
@@ -158,6 +155,5 @@ public class week4 {
          * n_ways += 1
          * D[i] = n_ways
          */
-    } 
 
 }
