@@ -33,17 +33,17 @@
          * 
          * Memoization is a technique used to store the results of expensive function calls and return the cached result when the same inputs occur again.
          * 
-         * memo = [1] x len(A)
+         * memo = [1] x len(A) is the formula to create a memo array
          *                                                  A = [31, 32, 34, 33]                    
-         * for i in range(len(A)-1, -1, -1):                33 -> 34 -> 32 -> 31                   1) 33
-         *     for j in range(i+1, len(A)):                 34 -> 33 -> 32 -> 31                      34
-         *        if A[i] < A[j]:                           if 33 < 34: 33 < 33: 33 < 32: 33 < 31     33 < 32 False    
-         *           memo[i] = max(memo[i], memo[j] + 1)    memo[3] = max(1, 1 + 1) = 2               
-         *  
+         * for i in range(len(A)-1, -1, -1):                33 -> 34 -> 32 -> 31                   1) 33             2) 34              3) 32               4) 31
+         *     for j in range(i+1, len(A)):                 34 -> 33 -> 32 -> 31                      34                33                 32                  31
+         *        if A[i] < A[j]:                           if 33 < 34: 33 < 33: 33 < 32: 33 < 31     33 < 32 False     33 < 31 False      33 < 32 False       31 < 32 True
+         *           memo[i] = max(memo[i], memo[j] + 1)    memo[3] = max(1, 1 + 1) = 2               memo[] 
+         *          
          * return max(memo)
          * 
          * Time Complexity: O(N^2) where N is the length of A. 
-         * Space Complexity: O(N) where N is the length of A. The space complexity is in the memo array. O(len(A)) = O(N)
+         * Space Complexity: O(N) where N is the length of A. The space complexity is in the memo array. O(len(A)) = O(N). Inside the mmeo array
          */
 
 public class week5 {
