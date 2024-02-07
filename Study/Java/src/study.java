@@ -1,3 +1,8 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 public class study {
     
@@ -72,10 +77,30 @@ public class study {
             System.out.println("The lowest number is " + result3);
         }
 
+        /* 
+         * Guess My Number
+         * 
+         * Write a program that plays the game of "Guess My Number" with the user. The program should use a binary search algorithm to find the number. The user will think of a number between 1 and n. The program will make guesses and the user will tell the program to guess higher or lower. The program will continue to make guesses until the user tells the program that the guess is correct.
+         */
+       // int max = (Integer.parseInt(System.console().readLine("Enter n: ")) - 1);
+       // int result4 = guessMyNumber(max);
 
-
+        /*
+         * Group Anagrams
+         * 
+         * Given an array of strings, group anagrams together.
+         * 
+         * Example 1:
+         * Input: ["eat","tea","tan","ate","nat","bat"]
+         * Output: [["ate","eat","tea"],["nat","tan"],["bat"]]
+         */
+        String[] A = {"eat", "tea", "tan", "ate", "nat", "bat"};
+        List<List<String>> result5 = groupAnagrams(A);
+        System.out.println(result5);
     }
 
+
+    // Week 1
     // Binary Search
     public static int binarySearch(int[] array, int target) {
         int left = 0;
@@ -93,7 +118,7 @@ public class study {
         }
         return -1; // if target is not in the array
     }
-
+    // Week 1
     // Binary Search with rotated array
     public static int binarySearchRotatedArray(int[] array, int target) {           // Array = [6, 7, 8, 9, 1, 2, 3, 4, 5] target = 4
         int left = 0;                                                               // left = 0, array[0] = 6
@@ -121,6 +146,7 @@ public class study {
         return -1; // Add the missing return statement
     }
 
+    // Week 2
     // Binary Search finding the minimum in both rotated and non-rotated array
     public static int binarySearchMinimum(int[] array) {                            // Array = [4, 5, 6, 7, 9, 11, 0, 1, 2]
         int left = 0;                                                               // left = 0                        
@@ -137,6 +163,50 @@ public class study {
         return array[left];
     }
 
-    // Binary Search with 2D array
+    // Week 2 Lab
+    // Guess My Number
+    public static int guessMyNumber(int max) {
+        int min = 0;
+        // Check if the number is positive
+        while (max < min) {
+            max = (Integer.parseInt(System.console().readLine("Enter a positive integer for n: "))-1);
+        }
+        // Check if the number is in the array
+        while (min <= max) {
+            int middle = max + (min - max) / 2; //Returns rounded up
+            System.out.print("Please think of a number between " + min + " and " + max + "."
+                + "\nIs your number " + middle + "?"
+                + "\nPlease enter C for correct, H for too high, or L for too low."
+                + "\nEnter your response H/L/C: ");
+            char response = System.console().readLine().charAt(0);
+            // Check if the response is valid
+            while (response != 'H' && response != 'L' && response != 'C') {
+                System.out.print("Enter your response H/L/C: ");
+                response = Character.toUpperCase(System.console().readLine().charAt(0));
+            }
+            // Check if the number is correct
+            if (response == 'C') {
+                System.out.println("Thank you for playing Guess My Number!");
+                return middle;
+            } else if (response == 'H') { // Check if the number is too high
+                max = middle - 1;
+            } else if (response == 'L') { // Check if the number is too low
+                min = middle + 1;
+            }
+        } return -1; // Return -1 if the number is not in the array
+    }
+
+    // Week 3
+    // Group Anagrams
+    public static List<List<String>> groupAnagrams(String[] A) {
+        Map<String, List<String>> map = new HashMap<>();
+        for (String word : A) {
+            char[] chars = word.toCharArray();
+            Arrays.sort(chars);
+            String sortedWord = new String(chars);
+            map.computeIfAbsent(sortedWord, k -> new ArrayList<>()).add(word);
+        }
+        return new ArrayList<>(map.values());
+    }
 }
 

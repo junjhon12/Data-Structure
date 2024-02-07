@@ -35,10 +35,10 @@
          * 
          * memo = [1] x len(A) is the formula to create a memo array
          *                                                  A = [31, 32, 34, 33]                    
-         * for i in range(len(A)-1, -1, -1):                33 -> 34 -> 32 -> 31                   1) 33             2) 34              3) 32               4) 31
-         *     for j in range(i+1, len(A)):                 34 -> 33 -> 32 -> 31                      34                33                 32                  31
-         *        if A[i] < A[j]:                           if 33 < 34: 33 < 33: 33 < 32: 33 < 31     33 < 32 False     33 < 31 False      33 < 32 False       31 < 32 True
-         *           memo[i] = max(memo[i], memo[j] + 1)    memo[3] = max(1, 1 + 1) = 2               memo[] 
+         * for i in range(len(A)-1, -1, -1):                
+         *     for j in range(i+1, len(A)):                 
+         *        if A[i] < A[j]:                            
+         *           memo[i] = max(memo[i], memo[j] + 1)     
          *          
          * return max(memo)
          * 
@@ -57,18 +57,22 @@ public class week5 {
 
     // Find the length of the longest increasing subsequence
     public static int lengthOfLIS(int[] A) {
+        // Create a memo array
         int[] memo = new int[A.length];
         for (int i = 0; i < A.length; i++) {
             memo[i] = 1;
         }
+        // Loop through the array and find the longest increasing subsequence
         for (int i = A.length - 1; i >= 0; i--) {
             for (int j = i + 1; j < A.length; j++) {
                 if (A[i] < A[j]) {
+                    // Find the maximum value of the memo array
                     memo[i] = Math.max(memo[i], memo[j] + 1);
                 }
             }
         }
         int max = 0;
+        // Find the maximum value of the memo array
         for (int i = 0; i < memo.length; i++) {
             max = Math.max(max, memo[i]);
         }
