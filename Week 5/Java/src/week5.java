@@ -1,5 +1,5 @@
 /**
-         * Week 5 2/5/2024
+         * Week 5 - 2/5/2024
          *  
          * UNIT TEST TAKING is highly recommended since it is a good way to test your code and make sure it works as expected.
          * Unit test taking is a process of testing individual units or components of a software.
@@ -44,7 +44,51 @@
          * 
          * Time Complexity: O(N^2) where N is the length of A. 
          * Space Complexity: O(N) where N is the length of A. The space complexity is in the memo array. O(len(A)) = O(N). Inside the mmeo array
-         */
+         * 
+         * Week 5 - 2/7/2024
+         * 
+         * Given: 10, 80, 30, 90, 40, 50, 70
+         * 
+         * [EXTREMELY IMPORTANT]
+         * Quick Sort is a sorting algorithm that uses the divide and conquer strategy to sort an array.
+         * It requires a pivot element to partition the array into two parts.
+         * low (10) 80 30 90 40 50 (70) high <- pivot
+         * i = low - 1, j = low
+         * 
+         * Chop it down to smaller pieces and sort them
+         * 
+         * Algorithm:
+         * Partition for (j=low: j <= high-1; j++)       1) j= 10; <= 70 = 
+         *     if (A[j] <= pivot)                        2) j= 80; 
+         *        i++ or i = i+1                         3) j= 30; 
+         *       swap (A[i] and A[j])                    4) j= 90; 
+         * #For loop ends                                5) j= 40; 
+         * swap A[i+1] and A[high]                       6) j= 50; 
+         * return i+1
+         * 
+         * Time complexity: O(NlogN) where N is the length of A.        Space complexity: O(1)
+         * 
+         * The pivot is 70
+         * 
+         * [10, 80, 30, 90, 40, 50, 70] -> [10, 30, 40, 50, 70, 90, 80]
+         * 
+         * Meaning of partitioning: the pivot is in the right place
+         * 
+         * [10, 30, 40, 50, 70, 90, 80] 
+         * pivot is now 80     
+         * swap (A[i+1] and A[high])                      
+         * return i++                                     
+         * 
+         * [10, 30, 40, 50, 70, 90, 80] -> [10, 30, 40, 50, 70, 80, 90]
+         * 
+         * Quick Sort = O(n) + O(n+log_2(n)) = O(nlog_2(n)) 
+         * O(n) is the partitioning and O(nlog_2(n)) is the sorting
+         * 
+         * [10, 9, 7, 5, 4, 3, 2, 1]
+         * Assign the last element as the pivot
+         * n^2 is the worst case scenario
+         * Reverse sorting is the worst case scenario
+         */                                              
 
 public class week5 {
     
@@ -78,4 +122,15 @@ public class week5 {
         }
         return max;
     }
+
+    public static void quickSort(int[] A, int low, int high) {
+        if (low < high) {
+            int pi = partition(A, low, high);
+            quickSort(A, low, pi - 1);
+            quickSort(A, pi + 1, high);
+        }
+
+        
+    }
+
 }
