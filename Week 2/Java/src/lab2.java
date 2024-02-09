@@ -33,5 +33,4 @@ public class lab2 {
             }
         }return -1; // Returns -1 if the number is not in the array
     } 
-}
-        
+}  
