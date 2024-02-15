@@ -156,4 +156,6 @@ public class week4 {
          * D[i] = n_ways
          */
 
+         
+
 }
