@@ -78,5 +78,14 @@ def quickSort(array):
     quickSortHelper(array, low, high)
     return array
 
+def quickSort2(array):
+    if len(array) <= 1:
+        return array
+    else:
+        pivot = array[0]
+        less = [i for i in array[1:] if i <= pivot]
+        greater = [i for i in array[1:] if i > pivot]
+        return quickSort2(less) + [pivot] + quickSort2(greater)
+
 print(quickSort([10, 80, 30, 90, 40, 50, 70])) # [10, 30, 40, 50, 70, 80, 90]
-print(quickSort([10, 9, 7, 5, 3, 2, 1])) # [1, 2, 3, 5, 7, 9, 10]
+print(quickSort2([10, 9, 7, 5, 3, 2, 1])) # [1, 2, 3, 5, 7, 9, 10]
