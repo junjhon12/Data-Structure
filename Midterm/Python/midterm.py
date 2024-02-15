@@ -52,7 +52,7 @@ array = [4, 5, 6, 7, 0, 1, 2]
 target = 3
 print(rotatedBinarySearch(array,target))
 
-def minElementBinarySerch(array):
+def minElementBinarySearch(array):
     left = 0
     right = len(array) - 1
     # Checks if array is valid
@@ -65,9 +65,9 @@ def minElementBinarySerch(array):
     return 'The minimum element is ' + str(array[left]) + '.'
     
 array = [5,4,3,2,1]
-print(minElementBinarySerch(array))
+print(minElementBinarySearch(array))
 array = [6,7,8,9,4,5,3,2,1]
-print(minElementBinarySerch(array))
+print(minElementBinarySearch(array))
 
 # Need to study this
 def gridBinarySearch(grid, target):
@@ -162,5 +162,30 @@ def rearrangeArray(array, number):
     return less + equal + greater
 
 array = [3,5,2,6,8,4,4,6,4,4,3]
-number = 5
+number = 4
 print(rearrangeArray(array, number))
+
+def rearrange_arrayP2(array,number):
+    # low pointer
+    low = 0
+    for i in range(len(array)):
+        if array[i] < number:
+            array[low], array[i] = array[i], array[low]
+            low += 1
+    return array
+
+array = [1, 3, 5, 7, 2, 4, 6, 8]
+number = 5
+print(rearrange_arrayP2(array,number))
+
+def fibonacci(number):
+    while number < 20:
+        if number == 0:
+            return 0
+        elif number == 1:
+            return 1
+        else:
+            return (fibonacci(number-1) + fibonacci(number-2))
+        
+number = 15
+print(fibonacci(number))
