@@ -1,3 +1,4 @@
+# time complexity: O(nlogn) -> average case
 def quickSort(array):
     low = 0
     high = len(array) - 1
