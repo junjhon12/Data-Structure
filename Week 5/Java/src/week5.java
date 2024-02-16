@@ -96,7 +96,6 @@ public class week5 {
         
         int[] A = {31, 32, 34, 33};
         System.out.println(lengthOfLIS(A));
-
     }
 
     // Find the length of the longest increasing subsequence
