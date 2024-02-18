@@ -28,8 +28,8 @@ def binarySearch_V2(array, target):
         elif array[middle] > target:
             right = middle - 1
         else:
-            return middle  # Return the index when target is found
-    return f'Not Found'
+            return f'{target} is in index' # Return the index when target is found
+    return f'{target} is not the array'
             
 array = [-10, -5, 0, 3, 7, 9, 12, 15]
 target = 7
@@ -80,7 +80,7 @@ def minElementBinarySearch(array):
     
 array = [5,4,3,2,1]
 print(minElementBinarySearch(array))
-array = [6,7,8,9,4,5,3,2,1]
+array = [6,7,8,9,4,5,3,2,-1]
 print(minElementBinarySearch(array))
 
 # Need to study this
@@ -89,8 +89,6 @@ def gridBinarySearch(grid, target):
     cols = len(grid[0])
     top = 0
     bottom = rows - 1
-    left = 0
-    right = cols - 1
     while top <= bottom:
         mid_row = top + (bottom - top) // 2
         if target < grid[mid_row][0]:
@@ -290,3 +288,56 @@ def quickSort(array):
 
 array = [10, 9, 7, 5, 3, 2, 1]
 print(quickSort(array))
+
+def quickSortIdentical(array):
+    if len(array) <= 1:
+        return array
+    array = list(set(array))
+    pivot = array[0]
+    less = [i for i in array[1:] if i <= pivot]
+    greater = [i for i in array[1:] if i > pivot]
+    return quickSort(less) + [pivot] + quickSort(greater)
+    
+ARRAY = [50, 11, 33, 21, 40, 50, 40, 40]
+print(quickSortIdentical(ARRAY))
+
+def memorization(array):
+    if len(array) == 0:
+        return 0
+    memo = [1] * len(array)
+    for i in range(1, len(array)):
+        for j in range(0, i):
+            if array[i]>array[j] and memo[i]<memo[j]+1:
+                memo[i] = memo[j] + 1
+    return max(memo)
+
+array = [71, 72, 74, 73]
+print(memorization(array))
+
+def mergeSort(array):
+    if len(array) <= 1:
+        return array
+    middle = len(array) // 2
+    left = mergeSort(array[:middle])
+    right = mergeSort(array[middle:])
+    return merge(left, right)
+
+def merge(left, right):
+    result = []
+    i = j = 0
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            result.append(left[i])
+            i += 1
+        elif left[i] > right[j]:
+            result.append(right[j])
+            j += 1
+        else: 
+            i += 1
+    # Extend the result with remaining elements from left or right list
+    result.extend(left[i:])
+    result.extend(right[j:])
+    return result
+
+array = [50, 11, 33, 21, 40, 50, 40, 21, 40]
+print(mergeSort(array))
