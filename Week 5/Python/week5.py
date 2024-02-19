@@ -55,7 +55,7 @@ An example is if the array is reversed list.
 A = [10, 9, 7, 5, 3, 2, 1]
 
 """
-
+# 
 def quickSort(array):
     low = 0
     high = len(array) - 1
@@ -71,6 +71,7 @@ def quickSort(array):
     
     def quickSortHelper(array, low, high):
         if low < high:
+            # pi is the partitioning index
             pi = partition(array, low, high)
             quickSortHelper(array, low, pi - 1)
             quickSortHelper(array, pi + 1, high)

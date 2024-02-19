@@ -56,6 +56,7 @@ def loop_join(array1, array2):
 
 print(loop_join(array1, array2))
 
+# O(m+n)
 def loop_join(array1, array2):
     joined_array = []
     i, j = 0, 0
@@ -72,3 +73,59 @@ def loop_join(array1, array2):
     return joined_array
 
 print(loop_join(array1, array2))
+
+"""
+Lab 2:
+You are given an array of integers and an index x.
+Without sorting Re-arrange the array as below:
+elements less than array[x], followed by elements equal to array[x], followed by elements greater than array[x]
+Array, a = [3,5,2,6,8,4,4,6,4,4,3] and x = 5
+Write a Python Program that re-arranges the above given array exactly
+as shown below without using a sorting routine of any kind
+output array = [3,2,3,4,4,4,4,5,6,8,6]
+Here You are allowed to use an extra array to solve the problem.
+
+You are given an array of integers and an index x.
+Without sorting Re-arrange the array as below:
+elements less than array[x], followed by elements equal to array[x], followed by elements greater than array[x]
+Array, a = [3,5,2,6,8,4,4,6,4,4,3] and x = 5
+Write a Python Program that re-arranges the above given array exactly
+as shown below without using a sorting routine of any kind
+output array = [3,2,3,4,4,4,4,5,6,8,6]
+"""
+# Sorting with extra array
+def rearranging(array, target):
+    low = []
+    equal = []
+    high = []
+    for i in array:
+        if i < array[target]:
+            low.append(i)
+        elif i == array[target]:
+            equal.append(i)
+        else:
+            high.append(i)
+    return low + equal + high
+
+array = [3,5,2,6,8,4,4,6,4,4,3]
+target = 5
+print(rearranging(array, target))
+
+# Sorting without extra array : Iterative
+def rearranging_Iterative(array, target):
+    low = 0
+    middle = 0
+    high = len(array) - 1
+    while middle <= high:
+        if array[middle] < target:
+            array[low], array[middle] = array[middle], array[low]
+            low += 1
+            middle += 1
+        elif array[middle] > target:
+            array[high], array[middle] = array[middle], array[high]
+            high -= 1
+        else:
+            middle += 1
+    return array
+
+print(rearranging_Iterative(array, target))
