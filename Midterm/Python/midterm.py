@@ -23,6 +23,7 @@ def binarySearch_V2(array, target):
     right = len(array) - 1
     while left <= right:
         middle = left + (right - left) // 2
+        # If the target is in the 
         if array[middle] < target:
             left = middle + 1
         elif array[middle] > target:
