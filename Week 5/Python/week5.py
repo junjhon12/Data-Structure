@@ -78,6 +78,7 @@ def quickSort(array):
     quickSortHelper(array, low, high)
     return array
 
+# Time Complexity of quickSort2 is O(nlogn) -> Average Case
 def quickSort2(array):
     if len(array) <= 1:
         return array

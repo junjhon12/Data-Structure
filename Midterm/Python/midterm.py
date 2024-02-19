@@ -1,3 +1,4 @@
+"""
 def binarySearch(array, target):
     left = 0
     right = len(array) - 1
@@ -15,14 +16,28 @@ def binarySearch(array, target):
             right = mid - 1
     
     return f'{target} is not inside the array'
-
+"""
+#Updated version of binary search from leetcode
+def binarySearch_V2(array, target):
+    left = 0
+    right = len(array) - 1
+    while left <= right:
+        middle = left + (right - left) // 2
+        # If the target is in the 
+        if array[middle] < target:
+            left = middle + 1
+        elif array[middle] > target:
+            right = middle - 1
+        else:
+            return f'{target} is in index' # Return the index when target is found
+    return f'{target} is not the array'
+            
 array = [-10, -5, 0, 3, 7, 9, 12, 15]
 target = 7
-print(binarySearch(array, target))
-
+print(binarySearch_V2(array, target))
 array = [2, 4, 6, 8, 10]
 target = 5
-print(binarySearch(array, target))
+print(binarySearch_V2(array, target))
 
 def rotatedBinarySearch(array, target):
     left = 0
@@ -66,7 +81,7 @@ def minElementBinarySearch(array):
     
 array = [5,4,3,2,1]
 print(minElementBinarySearch(array))
-array = [6,7,8,9,4,5,3,2,1]
+array = [6,7,8,9,4,5,3,2,-1]
 print(minElementBinarySearch(array))
 
 # Need to study this
@@ -75,8 +90,6 @@ def gridBinarySearch(grid, target):
     cols = len(grid[0])
     top = 0
     bottom = rows - 1
-    left = 0
-    right = cols - 1
     while top <= bottom:
         mid_row = top + (bottom - top) // 2
         if target < grid[mid_row][0]:
@@ -135,12 +148,17 @@ max = int(input('Enter n: ')) - 1
 result = guessMyNumber(max)
 """
 
-from collections import defaultdict
 def groupAnagrams(array):
-    sortedDictionary = defaultdict(list)
+    sortedDictionary = {}
     for word in array:
         sortedWord = "".join(sorted(word))
-        sortedDictionary[sortedWord].append(word)
+        # Check if sortedWord is already a key in the dictionary
+        if sortedWord in sortedDictionary:
+            # If yes, append the word to the list associated with the key
+            sortedDictionary[sortedWord].append(word)
+        else:
+            # If not, create a new key-value pair with sortedWord as the key and a list containing word as the value
+            sortedDictionary[sortedWord] = [word]
     return list(sortedDictionary.values())
 array = ["eat", "tea", "tan", "ate", "nat", "bat"]
 print(groupAnagrams(array))
@@ -189,3 +207,138 @@ def fibonacci(number):
         
 number = 15
 print(fibonacci(number))
+
+def climbStairs(number):
+    while number < 20:
+        if number == 0:
+            return 1
+        elif number == 1:
+            return 1
+        if number > 1:
+            return climbStairs(number-1) + climbStairs(number-2)
+        
+number = 2
+print(climbStairs(number))
+
+def decoding(s: str) -> int:
+    decodedDict = dict()
+    
+    def decode_count(i):
+        if i == len(s):
+            return 1
+        if s[i] == '0':
+            return 0
+        if i in decodedDict:
+            return decodedDict[i]
+        result = decode_count(i+1)
+        if i <= len(s) - 2 and (s[i] == '1' or (s[i] == '2' and s[i+1] < '7')):
+            s[i+1] == '1' or (s[i+1] == '2' and s[i+2] in '0123456')
+            result += decode_count(i+2)
+        decodedDict[i] = result
+        return result
+    return decode_count(0)
+    
+s = '121'
+print(decoding(s))
+
+import copy
+def rotateMatrix(matrix):
+    row = len(matrix)
+    newMatrix = [[0 for i in range(row)] for j in range(row)]
+    for i in range(row):
+        for j in range(row):
+            newMatrix[j][row - 1 - i] = matrix[i][j]
+    for i in range(row):
+        for j in range(row):
+            matrix[i][j] = newMatrix[i][j]
+    for row in matrix:
+        print(row)
+    return matrix
+
+matrix = [[1, 2, 3],
+          [4, 5, 6],
+          [7, 8, 9]]
+print('Rotated Matrix:')
+rotatedMatrix = rotateMatrix(matrix)
+
+def rotateInPlace(matrix):
+    row = len(matrix)
+    for i in range(row):
+        for j in range(i, row):
+            matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+    for i in range(row):
+        matrix[i] = matrix[i][::-1]
+    for row in matrix:
+        print(row)
+    return matrix
+
+matrix = [[1, 2, 3],
+          [4, 5, 6],
+          [7, 8, 9]]
+print('Rotated Matrix in place:')
+rotatedMatrixInPlace = rotateInPlace(matrix)
+
+def quickSort(array):
+    if len(array) <= 1:
+        return array
+    else:
+        pivot = array[0]
+        less = [i for i in array[1:] if i <= pivot]
+        greater = [i for i in array[1:] if i > pivot]
+        return quickSort(less) + [pivot] + quickSort(greater)
+
+array = [10, 9, 7, 5, 3, 2, 1]
+print(quickSort(array))
+
+def quickSortIdentical(array):
+    if len(array) <= 1:
+        return array
+    array = list(set(array))
+    pivot = array[0]
+    less = [i for i in array[1:] if i <= pivot]
+    greater = [i for i in array[1:] if i > pivot]
+    return quickSort(less) + [pivot] + quickSort(greater)
+    
+ARRAY = [50, 11, 33, 21, 40, 50, 40, 40]
+print(quickSortIdentical(ARRAY))
+
+def memorization(array):
+    if len(array) == 0:
+        return 0
+    memo = [1] * len(array)
+    for i in range(1, len(array)):
+        for j in range(0, i):
+            if array[i]>array[j] and memo[i]<memo[j]+1:
+                memo[i] = memo[j] + 1
+    return max(memo)
+
+array = [71, 72, 74, 73]
+print(memorization(array))
+
+def mergeSort(array):
+    if len(array) <= 1:
+        return array
+    middle = len(array) // 2
+    left = mergeSort(array[:middle])
+    right = mergeSort(array[middle:])
+    return merge(left, right)
+
+def merge(left, right):
+    result = []
+    i = j = 0
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            result.append(left[i])
+            i += 1
+        elif left[i] > right[j]:
+            result.append(right[j])
+            j += 1
+        else: 
+            i += 1
+    # Extend the result with remaining elements from left or right list
+    result.extend(left[i:])
+    result.extend(right[j:])
+    return result
+
+array = [50, 11, 33, 21, 40, 50, 40, 21, 40]
+print(mergeSort(array))
