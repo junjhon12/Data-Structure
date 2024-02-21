@@ -18,6 +18,7 @@ def binarySearch(array, target):
     return f'{target} is not inside the array'
 """
 #Updated version of binary search from leetcode
+# Time complexity: O(logn)
 def binarySearch_V2(array, target):
     left = 0
     right = len(array) - 1
