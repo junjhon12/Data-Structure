@@ -60,17 +60,20 @@ def quickSort(array):
     low = 0
     high = len(array) - 1
     pivot = array[high]
+    # Partition the array into two halves
     def partition(array, low, high):
         i = low - 1
         for j in range(low, high):
             if array[j] < pivot:
                 i += 1
+                
                 array[i], array[j] = array[j], array[i]
         array[i + 1], array[high] = array[high], array[i + 1]
-        return i + 1
-    
+        return i + 1 
+    # This function purpose 
     def quickSortHelper(array, low, high):
         if low < high:
+            # pi is the partitioning index
             pi = partition(array, low, high)
             quickSortHelper(array, low, pi - 1)
             quickSortHelper(array, pi + 1, high)
@@ -90,3 +93,33 @@ def quickSort2(array):
 
 print(quickSort([10, 80, 30, 90, 40, 50, 70])) # [10, 30, 40, 50, 70, 80, 90]
 print(quickSort2([10, 9, 7, 5, 3, 2, 1])) # [1, 2, 3, 5, 7, 9, 10]
+
+def quickSort(array):
+    low = 0
+    high = len(array) - 1
+    # Partition the array into two halves
+    def partition(array, low, high):
+        pivot = array[high]
+        i = low - 1
+        # The loop will iterate through the array and swap elements if the element is less than the pivot
+        for j in range(low, high):
+            if array[j] < pivot:
+                i += 1
+                # swap elements
+                array[i], array[j] = array[j], array[i]
+        # This will swap the pivot with the element at i + 1 because the pivot is the last element in the array
+        array[i + 1], array[high] = array[high], array[i + 1]
+        return i + 1
+    # The pur
+    def quickSortHelper(array, low, high):
+        if low < high:
+            # pi is the partitioning index
+            pi = partition(array, low, high)
+            quickSortHelper(array, low, pi - 1)
+            quickSortHelper(array, pi + 1, high)
+            
+    quickSortHelper(array, low, high)
+    return array
+
+ARRAY = [50, 11, 33, 21, 40, 50, 40, 21, 40]
+print(quickSort(ARRAY))

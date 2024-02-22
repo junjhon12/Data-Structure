@@ -18,6 +18,7 @@ def binarySearch(array, target):
     return f'{target} is not inside the array'
 """
 #Updated version of binary search from leetcode
+# Time complexity: O(logn)
 def binarySearch_V2(array, target):
     left = 0
     right = len(array) - 1
@@ -29,7 +30,7 @@ def binarySearch_V2(array, target):
         elif array[middle] > target:
             right = middle - 1
         else:
-            return f'{target} is in index' # Return the index when target is found
+            return f'{target} is in index {middle}' # Return the index when target is found
     return f'{target} is not the array'
             
 array = [-10, -5, 0, 3, 7, 9, 12, 15]
@@ -86,8 +87,8 @@ print(minElementBinarySearch(array))
 
 # Need to study this
 def gridBinarySearch(grid, target):
-    rows = len(grid)
-    cols = len(grid[0])
+    rows = len(grid) # Y
+    cols = len(grid[0]) # X
     top = 0
     bottom = rows - 1
     while top <= bottom:
@@ -173,28 +174,33 @@ def rearrangeArray(array, number):
     for elements in array:
         if elements < array[number]:
             less.append(elements)
-        elif elements == array[number]:
-            equal.append(elements)
-        else:
+        elif elements > array[number]:
             greater.append(elements)
+        else:
+            equal.append(elements)
     return less + equal + greater
 
 array = [3,5,2,6,8,4,4,6,4,4,3]
-number = 4
+number = 5
 print(rearrangeArray(array, number))
 
-def rearrange_arrayP2(array,number):
-    # low pointer
+def rearrangeArrayP2(array, number):
     low = 0
-    for i in range(len(array)):
-        if array[i] < number:
-            array[low], array[i] = array[i], array[low]
+    mid = 0
+    high = len(array) - 1
+    while low <= high:
+        if array[mid] < number:
+            array[low], array[mid] = array[mid], array[low]
             low += 1
+            mid += 1
+        elif array[mid] > number:
+            array[high], array[mid] = array[mid], array[high]
+            high -= 1
+        else:
+            mid += 1
     return array
 
-array = [1, 3, 5, 7, 2, 4, 6, 8]
-number = 5
-print(rearrange_arrayP2(array,number))
+print(rearrangeArrayP2(array,number))
 
 def fibonacci(number):
     while number < 20:
