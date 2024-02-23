@@ -10,13 +10,14 @@ How to create a linked list using python?
 class Node:
     def __init__(self, data):
         self.data = data
-        self.next = None
+        self.next = None #reference to the next node
         
 class LinkedList:
     def __init__(self):
         self.head = None
     # This method appends a new node with the data to the end of the linked list.
     def append(self, data):
+        # This method appends a new node with the data to the end of the linked list.
         new_node = Node(data)
         # If the linked list is empty, then the new node is the head of the linked list.
         if self.head is None:
@@ -38,8 +39,8 @@ class LinkedList:
             
 ll = LinkedList()
 ll.append(1)
-ll.append(2)
-ll.append(3)
+ll.append(20)
+ll.append(20)
 ll.append(4)
 ll.print_list()
 
@@ -60,3 +61,28 @@ ll.print_list()
 
 # How to search for an element in the linked list?
 #     - You can search for an element in the linked list by using the search method. The search method searches for the node with the data in the linked list. This allows for easy searching of elements in the linked list.
+
+def __init__(self, data):
+    self.data = data
+    self.ref = None
+
+def __init__(self):
+    self.head = None
+    
+def print_LL(self):
+    if self.head is None:
+        print("Linked List is empty")
+    else:
+        n = self.head
+        while n is not None:
+            print(n.data, "-->", end=" ")
+            n = n.ref
+            
+LL = LinkedList()
+LL.append(10)
+LL.print_LL() # Linked List is empty
+
+#Advantages of using linked list:
+#     - The linked list is a dynamic data structure. This means that the size of the linked list can change during the execution of the program. This allows for easy addition and deletion of elements from the linked list.
+#     - The linked list is a flexible data structure. This means that the elements of the linked list can be accessed in any order. This allows for easy access to the elements of the linked list.
+#     - The linked list is a memory-efficient data structure. This means that the elements of the linked list are stored in a memory-efficient way. This allows for easy storage of elements in the linked list.
