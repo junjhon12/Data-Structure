@@ -38,6 +38,8 @@ class LinkedList:
             cur_node = cur_node.next
             
 ll = LinkedList()
+
+
 ll.append(1)
 ll.append(20)
 ll.append(20)
