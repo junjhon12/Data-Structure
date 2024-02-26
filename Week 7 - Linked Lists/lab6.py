@@ -91,10 +91,10 @@ LL.print_LL() # Linked List is empty
 
 #2/25/2024 Studying Linked Lists
 """
-1) There's no reauirement that we maintain that positioning in contiguous memory
-2) Important note: location of thefirst item of the list must be explicitly specified. By doing so we can identified where the second is, and so on.
+1) There's no requirement that we maintain that positioning in contiguous memory
+2) Important note: location of the first item of the list must be explicitly specified. By doing so we can identified where the second is, and so on.
 3) Node is the basic building block for linked list implementation. They must hold at least two type of information: data field and reference to the next node.
-4) You need to supply thri nitial data value for the node.
+4) You need to supply the initial data value for the node.
 Example:
     class Node:
         def __init__(self, initData):                   temp = Node(93)
@@ -129,7 +129,7 @@ Example:
     def isEmpty(self):
         return self.head == None
         
-12) Use the add method to get items into a list but before doing so place the new item in the easiest location possible for unorderedList is the right at the end.
+12) Use the add method to get items into a list but before doing so place the new item in the easiest location possible for unorderedList is the right end.
 Example:
     mylist.add(31)
     mylist.add(77)
@@ -333,5 +333,6 @@ class UnorderedList:
             previous.setNext(current.getNext())
 
 mylist = UnorderedList()
+
 
 """
