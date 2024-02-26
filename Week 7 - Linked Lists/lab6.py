@@ -88,3 +88,63 @@ LL.print_LL() # Linked List is empty
 #     - The linked list is a dynamic data structure. This means that the size of the linked list can change during the execution of the program. This allows for easy addition and deletion of elements from the linked list.
 #     - The linked list is a flexible data structure. This means that the elements of the linked list can be accessed in any order. This allows for easy access to the elements of the linked list.
 #     - The linked list is a memory-efficient data structure. This means that the elements of the linked list are stored in a memory-efficient way. This allows for easy storage of elements in the linked list.
+
+#2/25/2024 Studying Linked Lists
+"""
+1) There's no reauirement that we maintain that positioning in contiguous memory
+2) Important note: location of thefirst item of the list must be explicitly specified. By doing so we can identified where the second is, and so on.
+3) Node is the basic building block for linked list implementation. They must hold at least two type of information: data field and reference to the next node.
+4) You need to supply thri nitial data value for the node.
+Example:
+    class Node:
+        def __init__(self, initData):                   temp = Node(93)
+            self.data = initData                        temp.getData()
+            self.next = None                            Output : 93
+            
+        def getData(self):
+            return self.data
+            
+        def getNext(self):
+            return self.next
+            
+        def setData(self, newData):
+            self.data = newData
+        
+5) The special Python reference value None will play an important role in the next Node class and later in the linked list itself.
+6) A reference to None will denote the fact there is no next node.
+7) It's always a good idea to explicitly assign None to your initial next reference values.
+8) Unordered list will be built from a collection of nodes, each linked to the next by explicit references.
+9) UnorderedList class must maintain a reference to the first node.
+Example:
+    class UnorderedList:
+        def __init__(self):             myList = UnorderedList()
+            self.head = None
+        
+10) It's very important to note that the list class itself does not contain any node objects. Instead it contains sa single reference to only the first node in the linked structure.
+Illustration:   myList -> head -> ...
+                myList -> head -> 54|_ -> 26|_ -> 93|_ -> 17|_ -> 77|_ -> 31|_ -> ...
+
+11) The isEmpty method checks to see if the head of the list is a refernce to None. self.head==None 
+Example:
+    def isEmpty(self):
+        return self.head == None
+        
+12) Use the add method to get items into a list but before doing so place the new item in the easiest location possible for unorderedList is the right at the end.
+Example:
+    mylist.add(31)
+    mylist.add(77)
+    mylist.add(17)
+    ...
+    
+13) Since 31 was added first it'll be the last node on the linked list. First in is last out.
+14) The added item shown must reside within an node object.
+15) Linking the new node into the existing structure requires two steps:
+        1.Change the next reference of the new node
+        2.Refer the new node to the old FIRST node
+        It's VERY important you follow these steps or else all of the original nodes are and can no longer be accessed.
+16) size, search, and remove, are all based on a technique known as linked list traversal.
+17) Traversal is the process of systematically visiting each node. Use an external reference that starts at the first node in the list. By moving between nodes, we move the reference to the next node by "traversing" the next reference.
+18) size method could be done by traversing the linked list and keep count of the number of nodes that occured.
+19) current is the external reference and it's initialized to the head of the list.
+20) 
+"""
