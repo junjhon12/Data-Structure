@@ -146,5 +146,192 @@ Example:
 17) Traversal is the process of systematically visiting each node. Use an external reference that starts at the first node in the list. By moving between nodes, we move the reference to the next node by "traversing" the next reference.
 18) size method could be done by traversing the linked list and keep count of the number of nodes that occured.
 19) current is the external reference and it's initialized to the head of the list.
-20) 
+Example:
+    def size(self):
+        current = self.head
+        count = 0
+        while current != None:
+            count = count + 1
+            current = current.getNext()
+        return count
+
+20) Boolean variable, found, is use to remmeber wheher we have located the item we are searching for.
+Example:
+    def search(self, item):                             myList.search(17)
+        current = self.head                             Output: True
+        found = False
+        while current != None and not found:
+            if current.getData() == item:
+                found = True
+            else:
+                current = current.getNext()
+                
+        return found
+        
+21) remove method requires two logical steps:
+        1.Traverse the list looking for the item to remove
+        2.Once found, remove it.
+22) Unfortunatley, there's no way to go backward in the linked list since current refers to the node ahead of the node where we would like to make the change, it is too latee to make the necessary adjustment.
+23) The solution: use two external references to traverse down the linked list.
+24) In doing so, current stops at the node to be removed, previous will be referrng to proper place in the linked list for the modification.
+25) When searching and ite is not found, previous and current must both be moved one node ahead of current. This is because previous is always behind current by one node.
+Example:
+    def remove(self, item):
+        current = self.head
+        previous = None
+        found = False
+        while not found:
+            if current.getData() == item:
+                found = True
+            else:
+                previous = current
+                current = current.getNext()
+                
+        if previous == None:
+            self.head = current.getNext()
+        else:
+            previous.setNext(current.getNext())
+    
+26) insert, index, and pop require that we name the positions of the list.
+
+Part I: Implement the append method for UnorderedList. What is the time complexity of the method you created?
+class Node:                                 Time Complexity: O(n)
+    def __init__(self,initdata):
+        self.data = initdata
+        self.next = None
+
+    def getData(self):
+        return self.data
+
+    def getNext(self):
+        return self.next
+
+    def setData(self,newdata):
+        self.data = newdata
+
+    def setNext(self,newnext):
+        self.next = newnext
+
+
+class UnorderedList:
+
+    def __init__(self):
+        self.head = None
+
+    def isEmpty(self):
+        return self.head == None
+
+    def add(self,item):
+        temp = Node(item)
+        temp.setNext(self.head)
+        self.head = temp
+
+    def size(self):
+        current = self.head
+        count = 0
+        while current != None:
+            count = count + 1
+            current = current.getNext()
+
+        return count
+
+    def search(self,item):
+        current = self.head
+        found = False
+        while current != None and not found:
+            if current.getData() == item:
+                found = True
+            else:
+                current = current.getNext()
+
+        return found
+
+    def remove(self,item):
+        current = self.head
+        previous = None
+        found = False
+        while not found:
+            if current.getData() == item:
+                found = True
+            else:
+                previous = current
+                current = current.getNext()
+
+        if previous == None:
+            self.head = current.getNext()
+        else:
+            previous.setNext(current.getNext())
+
+mylist = UnorderedList()
+
+Part II: In the previous problem, you most likely created an append method that was O(n). If you add an instance variable to the UnorderedList class you can create an append method that is O(1). Modify your append method to be O(1)). Be Careful! To really do this correctly you will need to consider a couple of special cases that may require you to make a modification to the add method as well.
+class Node:                                 Time Complexity: O(1)
+    def __init__(self,initdata):
+        self.data = initdata
+        self.next = None
+
+    def getData(self):
+        return self.data
+
+    def getNext(self):
+        return self.next
+
+    def setData(self,newdata):
+        self.data = newdata
+
+    def setNext(self,newnext):
+        self.next = newnext
+
+
+class UnorderedList:
+
+    def __init__(self):
+        self.head = None
+
+    def isEmpty(self):
+        return self.head == None
+
+    def add(self,item):
+        temp = Node(item)
+        temp.setNext(self.head)
+        self.head = temp
+
+    def size(self):
+        current = self.head
+        count = 0
+        while current != None:
+            count = count + 1
+            current = current.getNext()
+
+        return count
+
+    def search(self,item):
+        current = self.head
+        found = False
+        while current != None and not found:
+            if current.getData() == item:
+                found = True
+            else:
+                current = current.getNext()
+
+        return found
+
+    def remove(self,item):
+        current = self.head
+        previous = None
+        found = False
+        while not found:
+            if current.getData() == item:
+                found = True
+            else:
+                previous = current
+                current = current.getNext()
+
+        if previous == None:
+            self.head = current.getNext()
+        else:
+            previous.setNext(current.getNext())
+
+mylist = UnorderedList()
+
 """
