@@ -39,7 +39,7 @@ class Node:
         self.data = data
         self.next = None
         
-class LinkedList:
+class LinkedList_Reverse:
     # Use self since we are creating a new linked list.
     def __init__(self):
         self.head = None
@@ -67,7 +67,7 @@ class LinkedList:
             current = next
         self.head = prev
         
-ll = LinkedList()
+ll = LinkedList_Reverse()
 ll.insert(7)
 ll.insert(6)
 ll.insert(19)
@@ -103,3 +103,158 @@ Python DOES NOT have linked list
 
 You can place pointers inside arrays.
 """
+
+"""
+2/28/2024
+
+Topic: Linked List
+
+Technical Interview Question:
+7 -> 5 -> 15 -> 13 -> null
+Expected Output:
+13 -> 15 -> 5 -> 7 -> null
+"""
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        
+    def setNext(self, new_next):
+        self.next = new_next
+        
+class linkedList_Reverse:
+    def __init__(self):
+        self.head = None
+    
+    def add(self, item):
+        temp = Node(item)
+        temp.setNext(self.head)
+        self.head = temp
+        
+    def print_list(self):
+        # Use temp since we are traversing the linked list.
+        temp = self.head
+        while temp:
+            print(temp.data, end=" -> ")
+            temp = temp.next
+        print("NULL")
+    
+    def reverse(self):
+        prev = None
+        current = self.head
+        while current:
+            temp = current.next
+            current.next = prev
+            prev = current
+            current = temp
+        self.head = prev
+        
+ll = linkedList_Reverse()
+ll.add(5)
+ll.add(15)
+ll.add(7)
+ll.add(9)
+print(ll.print_list())
+
+#Test cases
+# list is null
+# list has one element
+# list has two elements
+
+
+"""
+    Simulation:
+    Given: 7 -> 5 -> 15 -> 13 -> NULL
+    Expected Output: 13 -> 15 -> 5 -> 7 -> NULL
+    1. prev = None, current = 7, temp = 5 -> 15 -> 13 -> NULL
+    2. current.next = prev, prev = 7, current = 5, temp = 15 -> 13 -> NULL
+    3. current.next = prev, prev = 5, current = 15, temp = 13 -> NULL
+    4. current.next = prev, prev = 15, current = 13, temp = NULL
+    5. current.next = prev, prev = 13, current = NULL, temp = NULL
+    6. self.head = prev
+    7. 13 -> 15 -> 5 -> 7 -> NULL
+    Time Complexity: O(n) n is the number of nodes in the linked list
+    Space Complexity: O(1)
+    Memory Complexity: O(1)
+    
+    The program will run exactly the number of nodes in the linked list.
+    
+    Why linked list isn't used in the industry?
+    - The trade-off of a linked list is speed for memory.
+    Why does Big Tech companies use linked list?
+    
+"""
+
+"""
+Problem 2: linkedList Cycle
+Given: 7 -> 10 -> 6 -> 9 cycle to 6
+Expected Output: True, there is a cycle
+"""
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        
+    def getData(self):
+        return self.data
+    def getNext(self):
+        return self.next
+    def setData(self, new_data):
+        self.data = new_data
+    def setNext(self, new_next):
+        self.next = new_next
+        
+class LinkedList_Cycle:
+    def __init__(self):
+        self.head = None 
+
+    def is_empty(self):
+        return self.head == None
+    def add(self, item):
+        temp = Node(item)
+        temp.setNext(self.head)
+        self.head = temp
+    def size(self):
+        current = self.head
+        count = 0
+        while current != None:
+            count += 1
+            current = current.getNext()
+        return count
+    def search(self, item):
+        current = self.head
+        found = False
+        while current != None and not found:
+            if current.getData() == item:
+                found = True
+            else:
+                current = current.getNext()
+        return found
+    
+    def print_list(self):
+        # Use temp since we are traversing the linked list.
+        temp = self.head
+        while temp:
+            print(temp.data, end=" -> ")
+            temp = temp.next
+        print("NULL")
+    
+    def check_cycle(self):
+        slow = self.head
+        fast = self.head
+        while fast != None and fast.next != None:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                return f'True, there is a cycle'
+        return f'False, there is no cycle'
+    
+ll = LinkedList_Cycle()
+ll.add(7)
+ll.add(10)
+ll.add(6)
+ll.add(9)
+ll.head.next.next = ll.head.next
+print(ll.check_cycle())
