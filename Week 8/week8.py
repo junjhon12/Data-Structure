@@ -209,30 +209,12 @@ class Node:
 class LinkedList_Cycle:
     def __init__(self):
         self.head = None 
-
     def is_empty(self):
         return self.head == None
     def add(self, item):
         temp = Node(item)
         temp.setNext(self.head)
         self.head = temp
-    def size(self):
-        current = self.head
-        count = 0
-        while current != None:
-            count += 1
-            current = current.getNext()
-        return count
-    def search(self, item):
-        current = self.head
-        found = False
-        while current != None and not found:
-            if current.getData() == item:
-                found = True
-            else:
-                current = current.getNext()
-        return found
-    
     def print_list(self):
         # Use temp since we are traversing the linked list.
         temp = self.head
@@ -240,13 +222,15 @@ class LinkedList_Cycle:
             print(temp.data, end=" -> ")
             temp = temp.next
         print("NULL")
-    
     def check_cycle(self):
         slow = self.head
         fast = self.head
         while fast != None and fast.next != None:
+            # Slow pointer moves one step
             slow = slow.next
+            # Fast pointer moves two steps
             fast = fast.next.next
+            # If the two pointers meet, then there is a cycle
             if slow == fast:
                 return f'True, there is a cycle'
         return f'False, there is no cycle'
