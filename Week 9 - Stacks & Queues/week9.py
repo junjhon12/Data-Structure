@@ -1,5 +1,5 @@
 '''
-3/4/2024
+3/4/2024 - Monday
 
 Stack is a data structure that follows the Last In First Out (LIFO) principle.
 The last element added to the stack is the first element to be removed.
@@ -48,6 +48,10 @@ Time complexity:
 - Access: O(n)
 Space complexity:
 - O(n) -> Pre-Allocation inside the two stacks
+
+push will add an element to the top of the stack
+peek will return the top element of the stack
+pop will remove the top element of the stack
 '''
 
 def stack():
@@ -107,18 +111,20 @@ s.push(5)
 s.push(3)
 s.push(7)
 s.print_stack()
-print(s.pop())
-s.print_stack()
-print(s.pop())
 
 # As an array
-# [5, 3, 2, 1, 0, 5, 9]
-
+# [5, 3, 2, 1, 0, 5, 9] output after popping last element
+# Output: [5, 3, 2, 1, 0, 5]
 def stack():
     stack = []
-    stack.append(1)
-    stack.append(2)
+    stack.append(5) #First in
     stack.append(3)
+    stack.append(2)
+    stack.append(1)
+    stack.append(0)
     stack.append(5)
+    stack.append(9) #Last in
     print(stack.pop())
     print(stack)
+    
+print(stack())
