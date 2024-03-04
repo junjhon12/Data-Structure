@@ -151,16 +151,11 @@ class linkedList_Reverse:
         self.head = prev
         
 ll = linkedList_Reverse()
-ll.add(5)
-ll.add(15)
-ll.add(7)
-ll.add(9)
+ll.add(1)
+ll.add(2)
+ll.add(3)
+ll.add(4)
 print(ll.print_list())
-
-#Test cases
-# list is null
-# list has one element
-# list has two elements
 
 
 """
@@ -199,10 +194,6 @@ class Node:
         
     def getData(self):
         return self.data
-    def getNext(self):
-        return self.next
-    def setData(self, new_data):
-        self.data = new_data
     def setNext(self, new_next):
         self.next = new_next
         
@@ -232,8 +223,8 @@ class LinkedList_Cycle:
             fast = fast.next.next
             # If the two pointers meet, then there is a cycle
             if slow == fast:
-                return f'True, there is a cycle'
-        return f'False, there is no cycle'
+                return 'True, there is a cycle'
+        return 'False, there is no cycle'
     
 ll = LinkedList_Cycle()
 ll.add(7)
