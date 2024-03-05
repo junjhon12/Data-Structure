@@ -1,67 +1,87 @@
 class Calculator:
     def __init__(self):
-        self.stack = []
-
+        self.data = self
+    
     def evaluate_expression(self, expression):
-        """
-        Evaluates the given expression and returns the result.
-
-        Args:
-            expression (str): The expression to evaluate.
-
-        Returns:
-            int or float: The result of the expression evaluation.
-        """
+        # If the expression is empty, return "Invalid expression"
+        if expression == "":
+            return "Invalid expression"
+        
+        # Tokenize the expression
         tokens = expression.split()
+        
+        # two stacks for operands and operators
+        number = []
+        operators = []
+        
+        # Define operator precedence (higher number means higher precedence)
+        precedence = {'+': 1, '-': 1, '*': 2, '/': 2}
+        
+        # Function to perform arithmetic operations
+        def perform_operation():
+            operator = operators.pop()
+            operand2 = number.pop()
+            operand1 = number.pop()
+            if operator == '+':
+                number.append(operand1 + operand2)
+            elif operator == '-':
+                number.append(operand1 - operand2)
+            elif operator == '*':
+                number.append(operand1 * operand2)
+            elif operator == '/':
+                number.append(operand1 / operand2)
+        
+        # Iterate through each token in the expression
         for token in tokens:
-            if token.isdigit() or (token.count('.') == 1 and token.replace('.', '').isdigit()):
-                self.stack.append(float(token))
-            else:
-                if token == '+':
-                    self.stack.append(self.stack.pop() + self.stack.pop())
-                elif token == '-':
-                    num2 = self.stack.pop()
-                    num1 = self.stack.pop()
-                    self.stack.append(num1 - num2)
-                elif token == '*':
-                    self.stack.append(self.stack.pop() * self.stack.pop())
-                elif token == '/':
-                    num2 = self.stack.pop()
-                    num1 = self.stack.pop()
-                    self.stack.append(num1 / num2)
-        return self.stack.pop()
+            # If the token is a number, add it to the operands stack
+            if token.isdigit():
+                number.append(int(token))
+            elif token in precedence:
+                # If the current operator has higher precedence than the previous operator, perform the previous operation
+                while operators and precedence[token] <= precedence[operators[-1]]:
+                    perform_operation()
+                operators.append(token)
+        
+        # Perform remaining operations
+        while operators:
+            perform_operation()
+        
+        # The result is the only element left in the operands stack
+        return number[0]
 
 # Test cases:
-# Example usage:
 calculator = Calculator()
-# result = calculator.evaluate_expression("3 4 + 2 *")
-# print("Result:", result)
-# Expected output: Result: 14
+expression = "10 * 2 - 15"
+print(calculator.evaluate_expression(expression))
 
-# Test case with parentheses:
-result = calculator.evaluate_expression("( 3 + 4 ) * 2")
-print("Result:", result)
-# Expected output: Result: 14
+expression = "10 + 2 * 6"
+print(calculator.evaluate_expression(expression))
 
-# Test case with floating point numbers:
-# result = calculator.evaluate_expression("3.5 2 * 1.5 +")
-# print("Result:", result)
-# Expected output: Result: 8.5
+expression = "100 * 2 / 25"
+print(calculator.evaluate_expression(expression))
 
-# Test case with larger expression:
-# result = calculator.evaluate_expression("10 2 * 15 -")
-# print("Result:", result)
-# Expected output: Result: 5
+expression = "100 * 2 / 25 + 3"
+print(calculator.evaluate_expression(expression))
 
-# Test case with division:
-# result = calculator.evaluate_expression("10 5 /")
-# print("Result:", result)
-# Expected output: Result: 2.0
+expression = "2 7 + 3 -"
+print(calculator.evaluate_expression(expression))
 
-# Test case with multiple operators:
-# result = calculator.evaluate_expression("3 4 + 5 * 6 2 / -")
-# print("Result:", result)
-# Expected output: Result: 29.0
+expression = "10 * 2 - 15"
+print(calculator.evaluate_expression(expression))
 
-# Time complexity: O(n)
-# Space complexity: O(n)
+#Test Cases
+# Null
+expression = ""
+print(calculator.evaluate_expression(expression))
+# One element
+expression = "10"
+print(calculator.evaluate_expression(expression))
+# Same element
+expression = "10 10"
+print(calculator.evaluate_expression(expression))
+# Same element with operator
+expression = "10 10 +"
+print(calculator.evaluate_expression(expression))
+
+# Time complexity: O(n) since we're handling the element one by one
+# Space complexity: O(n) since we're using two stacks to store the operands and operators
