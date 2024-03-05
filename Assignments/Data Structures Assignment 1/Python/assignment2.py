@@ -1,87 +1,60 @@
-class Calculator:
-    def __init__(self):
-        self.data = self
+from collections import deque
+
+def calculate(operator, number1, number2): 
+    # Calculate the result based on the operator
+    if operator == '+':
+        return number1 + number2
+    elif operator == '-':
+        return number1 - number2
+    elif operator == '*':
+        return number1 * number2
+    elif operator == '/':
+        return number1 / number2
+
+def evaluate_postfix(expression: str) -> int:  # Converts to integer
+    # If the expression is empty, return 0
+    if expression == "":
+        return 0
+    # If the expression has only operator, return 0
+    if len(expression) == 1 and expression in ['+', '-', '*', '/']:
+        return 0
+    operators = ['+', '-', '*', '/']
+    stack = deque()  # Use deque as a stack since it's faster than list
+    # Split the expression into a list of elements
+    split_expression = expression.split(" ")
+    # Iterate through the splitted elements
+    for i in split_expression:
+        # If the element is an operator, pop the last two elements from the stack and calculate the result
+        if i in operators:
+            number2 = stack.pop()
+            number1 = stack.pop()
+            # Calculate the result and push it to the stack
+            result = calculate(i, number1, number2)
+            stack.append(result)
+        # If the element is a number, push it to the stack
+        else:
+            stack.append(int(i))
     
-    def evaluate_expression(self, expression):
-        # If the expression is empty, return "Invalid expression"
-        if expression == "":
-            return "Invalid expression"
-        
-        # Tokenize the expression
-        tokens = expression.split()
-        
-        # two stacks for operands and operators
-        number = []
-        operators = []
-        
-        # Define operator precedence (higher number means higher precedence)
-        precedence = {'+': 1, '-': 1, '*': 2, '/': 2}
-        
-        # Function to perform arithmetic operations
-        def perform_operation():
-            operator = operators.pop()
-            operand2 = number.pop()
-            operand1 = number.pop()
-            if operator == '+':
-                number.append(operand1 + operand2)
-            elif operator == '-':
-                number.append(operand1 - operand2)
-            elif operator == '*':
-                number.append(operand1 * operand2)
-            elif operator == '/':
-                number.append(operand1 / operand2)
-        
-        # Iterate through each token in the expression
-        for token in tokens:
-            # If the token is a number, add it to the operands stack
-            if token.isdigit():
-                number.append(int(token))
-            elif token in precedence:
-                # If the current operator has higher precedence than the previous operator, perform the previous operation
-                while operators and precedence[token] <= precedence[operators[-1]]:
-                    perform_operation()
-                operators.append(token)
-        
-        # Perform remaining operations
-        while operators:
-            perform_operation()
-        
-        # The result is the only element left in the operands stack
-        return number[0]
+    return stack.pop()
 
-# Test cases:
-calculator = Calculator()
-expression = "10 * 2 - 15"
-print(calculator.evaluate_expression(expression))
+# Test cases
+print(evaluate_postfix("4 13 5 / +")) # 6
+print(evaluate_postfix("10 6 9 3 + -11 * / * 17 + 5 +")) # 22
+print(evaluate_postfix("2 7 + 3 -"))
+# Test Case Null
+print(evaluate_postfix(""))
+# Test Case 1 element
+print(evaluate_postfix("1"))
+# Test Case 2 elements
+print(evaluate_postfix("1 2"))
+# Test Case 3 elements with 1 operator
+print(evaluate_postfix("1 2 3 +"))
+# Test Case 1 operator
+print(evaluate_postfix("+"))
 
-expression = "10 + 2 * 6"
-print(calculator.evaluate_expression(expression))
-
-expression = "100 * 2 / 25"
-print(calculator.evaluate_expression(expression))
-
-expression = "100 * 2 / 25 + 3"
-print(calculator.evaluate_expression(expression))
-
-expression = "2 7 + 3 -"
-print(calculator.evaluate_expression(expression))
-
-expression = "10 * 2 - 15"
-print(calculator.evaluate_expression(expression))
-
-#Test Cases
-# Null
-expression = ""
-print(calculator.evaluate_expression(expression))
-# One element
-expression = "10"
-print(calculator.evaluate_expression(expression))
-# Same element
-expression = "10 10"
-print(calculator.evaluate_expression(expression))
-# Same element with operator
-expression = "10 10 +"
-print(calculator.evaluate_expression(expression))
-
-# Time complexity: O(n) since we're handling the element one by one
-# Space complexity: O(n) since we're using two stacks to store the operands and operators
+# Time complexity: O(n), where n is the number of elements in the expression
+# Space complexity: O(n), where n is the number of elements in the expression
+"""
+By useing a deque as a stack, I can easily pop and append elements to the stack.
+The reason why it's faster than a list is because it's implemented as a doubly-linked list, so it's faster to pop and append elements.
+"""
