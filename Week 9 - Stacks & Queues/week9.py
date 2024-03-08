@@ -147,12 +147,15 @@ F(4) = 4 * F(3) = 4 * 3 * F(2) = 4 * 3 * 2 * F(1) = 4 * 3 * 2 * 1 * F(0) = 4 * 3
  
  There is no Recursion without a Call Stack, never.
  Recursive Binary has extra memory due to the call stack.
+ How does the fibonacci knows the previous value?
+ 
  
  
  New Topic: Queues
  
     Queue is a data structure that follows the First In First Out (FIFO) principle.
     Array and Linked List are the two main ways to implement a queue.
+    
     
     Head: 5 -> 4 -> 3 -> 2 -> 1 -> Null
     
@@ -198,4 +201,10 @@ F(4) = 4 * F(3) = 4 * 3 * F(2) = 4 * 3 * 2 * F(1) = 4 * 3 * 2 * 1 * F(0) = 4 * 3
       while i > tail item of Max Q
         remove from tail of Max Q
       enqueue to Max Q
+      
+    Accessing from the head is stack, accessing from the tail is a queue.
+    
+    Read landing content
+    FIrst is intro
+    second an third is what you want to focus on
 """
