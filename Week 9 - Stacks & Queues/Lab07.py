@@ -1,31 +1,3 @@
-"""
-Instructions:
-Below is how the expression is represented. This expression is also known as an
-”post-fix” string expression
-3 5 + 1 -
-
-Please remember, there are space(s) between operands/operators in the expression. So your solution needs to think of this aspect.
-
-Design a simple calculator that helps you solve the expression given. To
-solve the problem a Stack will help - for which - You can use the collections.deque data structure provided in Python.
-”Deques are a generalization of stacks and queues (the name is pronounced
-“deck” and is short for “double-ended queue”)”
-
-Please be reminded that you need to design the calculator and not use
-in-built math methods from the programming language library to solve
-the expression. Doing So would lead to a straight score of Zero ! Also at
-the end of the program as a comment mention the time and space complexity of your solution. Time and space complexity is worth 15 points
-each !
-
-Very Very Important :
-(1) Your code should be well commented which explains all the steps you are
-performing to solve the problem. A submission without code comments
-will immediately be deducted 15 points !
-(2) As a comment in your code, please write your test-cases on how you would
-test your solution assumptions and hence your code.
-A submission without test cases (as comments) will immediately be deducted 15 points ! Please Remember : Although, written as comments -
-You will address your test cases in the form of code and not prose :)
-"""
 # Import deque since we are going to use it as a stack
 from collections import deque
 
@@ -80,23 +52,34 @@ def calculator(expression: str) -> int:
     # Return the result
     return stack.pop()
     
-print(calculator("3 5 + 1 -"))
-print(calculator("4 13 5 / +"))
-print(calculator("10 6 9 3 + -11 * / * 17 + 5 +"))
-
 # Test cases
-# Test case Null
-print(calculator(""))
-# Test case 1 element
-print(calculator("1"))
-# Test case 2 elements
-print(calculator("1 2"))
-# Test case 4 elements with 1 operator
-print(calculator("1 2 3 +"))
-# Test case 1 operator
-print(calculator("+"))
-# Test case 1 operator and 1 number
-print(calculator("1 +"))
+# Test case: 3 + 5 - 1 = 7
+print(calculator("3 5 + 1 -"))  # Expected output: 7
+
+# Test case: 4 + (13 / 5) = 6
+print(calculator("4 13 5 / +"))  # Expected output: 6
+
+# Test case: 10 - 6 * (9 + 3) / -11 + 17 + 5 = 22
+print(calculator("10 6 9 3 + -11 * / * 17 + 5 +"))  # Expected output: 22
+
+# Additional test cases
+# Test case: Empty input should return 0
+print(calculator(""))  # Expected output: 0
+
+# Test case: Single number input should return that number
+print(calculator("1"))  # Expected output: 1
+
+# Test case: Two numbers input should return 0
+print(calculator("1 2"))  # Expected output: 0
+
+# Test case: Four elements with one operator input should return 0
+print(calculator("1 2 3 +"))  # Expected output: 0
+
+# Test case: Single operator input should return 0
+print(calculator("+"))  # Expected output: 0
+
+# Test case: Single operator and one number input should return 0
+print(calculator("1 +"))  # Expected output: 0
 
 # Time complexity: O(n), because we iterate through the expression
 # Space complexity: O(n), because we use a deque to store the elements of the expression
