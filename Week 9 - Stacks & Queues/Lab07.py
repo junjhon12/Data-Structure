@@ -55,6 +55,9 @@ def calculator(expression: str) -> int:
     # If there are more operators than numbers return 0
     if expression.count('+') + expression.count('-') + expression.count('*') + expression.count('/') > expression.count(' '):
         return 0
+    # If there is just 1 operator and 1 number return 0
+    if expression.count(' ') == 1 and (expression.count('+') + expression.count('-') + expression.count('*') + expression.count('/')) == 1:
+        return 0
 
     # Container for operators
     operators = ['+', '-', '*', '/']
@@ -90,6 +93,10 @@ print(calculator("1"))
 print(calculator("1 2"))
 # Test case 4 elements with 1 operator
 print(calculator("1 2 3 +"))
+# Test case 1 operator
+print(calculator("+"))
+# Test case 1 operator and 1 number
+print(calculator("1 +"))
 
 # Time complexity: O(n), because we iterate through the expression
 # Space complexity: O(n), because we use a deque to store the elements of the expression
