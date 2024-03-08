@@ -52,17 +52,14 @@ def calculator(expression: str) -> int:
     # Return the result
     return stack.pop()
     
+# 3 + 5 - 1 = 7
+print(calculator("3 5 + 1 -"))
+# 4 + (13 / 5) = 6
+print(calculator("4 13 5 / +"))
+# 10 - 6 * (9 + 3) / -11 + 17 + 5 = 22
+print(calculator("10 6 9 3 + -11 * / * 17 + 5 +"))
+
 # Test cases
-# Test case: 3 + 5 - 1 = 7
-print(calculator("3 5 + 1 -"))  # Expected output: 7
-
-# Test case: 4 + (13 / 5) = 6
-print(calculator("4 13 5 / +"))  # Expected output: 6
-
-# Test case: 10 - 6 * (9 + 3) / -11 + 17 + 5 = 22
-print(calculator("10 6 9 3 + -11 * / * 17 + 5 +"))  # Expected output: 22
-
-# Additional test cases
 # Test case: Empty input should return 0
 print(calculator(""))  # Expected output: 0
 
