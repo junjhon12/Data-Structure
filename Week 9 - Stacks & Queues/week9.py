@@ -195,6 +195,8 @@ F(4) = 4 * F(3) = 4 * 3 * F(2) = 4 * 3 * 2 * F(1) = 4 * 3 * 2 * 1 * F(0) = 4 * 3
     If a new item, i, is greater than the last element in the max queue, pop the last element and append i.
         remove from tail of Max Q
     equal to Max Q
+    Time complexity: O(1)
+    Space complexity: O(n) -> Pre-Allocation inside the two stacks
     
     Function:
     # a new item i
@@ -207,4 +209,88 @@ F(4) = 4 * F(3) = 4 * 3 * F(2) = 4 * 3 * 2 * F(1) = 4 * 3 * 2 * 1 * F(0) = 4 * 3
     Read landing content
     FIrst is intro
     second an third is what you want to focus on
+    
+    Python:
+    from collections import deque
+    q = deque()
+    q.append(1)
+    q.append(2)
+    q.append(3)
+    q.popleft()
+    print(q)
+    
+    Enque process in the Max Queue
+        while new element(i) > tail element of Max Queue
+            remove tail element of Max Queue
+        append new element(i) to Max Queue
+        
+    Time complexity:
+    - Access: O(n)
+    Space complexity:
+    - O(n) -> Pre-Allocation
+    
+    Code:
+    from collections import deque
+from collections import deque
+    class MaxQueue:
+        def __init__(self):
+            self.q = deque()
+            self.max_q = deque()
+            
+        def enqueue(self, i):
+            while self.max_q and i > self.max_q[-1]:
+                self.max_q.pop()
+            self.max_q.append(i)
+            self.q.append(i)
+            
+        def dequeue(self):
+            if self.q[0] == self.max_q[0]:
+                self.max_q.popleft()
+            return self.q.popleft()
+            
+        def max(self):
+            return self.max_q[0]
+            
+    q = MaxQueue()
+    q.enqueue(1)
+    q.enqueue(2)
+    q.enqueue(3)
+    q.dequeue()
+    print(q.max())
+    
+    deque process
+    if head(max queue) == head(queue)
+        remove head(max queue)
+    remove head(queue)
+    
+    Time complexity:
+    - Access: O(n)
+    Space complexity:
+    - O(n) -> Pre-Allocation
+    
+    Deque:
+    if Main Queue(front) == Max Queue(front)
+        remove from Max Queue(front)
+    else
+        remove from Main Queue(front)
+        
+    Time complexity: O(1)
+    Space complexity: O(n) -> inside Max Queue
 """
+from collections import deque
+def enqueue_max(q, max_q, i):
+    while max_q and i > max_q[-1]:
+        max_q.pop()
+    max_q.append(i)
+    q.append(i)
+
+q = deque()
+max_q = deque()
+
+enqueue_max(q, max_q, 1)
+enqueue_max(q, max_q, 4)
+enqueue_max(q, max_q, 2)
+enqueue_max(q, max_q, 3)
+
+print(q)
+print(max_q)
