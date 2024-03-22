@@ -60,7 +60,7 @@ WHat's the diffirence between an audit dictonary and a regular dictionary?
     
     3/20/2024
     
-    Topic: 
+    Topic: Binary Tree
     
     How to improve a linear structure?
     - Adding a pointer, known as Tree structure.
@@ -93,4 +93,6 @@ WHat's the diffirence between an audit dictonary and a regular dictionary?
      
      Post-order is a depth-first search algorithm that traverses the left subtree, then the right subtree, and finally the root.
      A complete node is a node that has two children or no children.
+     
+     The final exam will not have recursive questions.
 """
