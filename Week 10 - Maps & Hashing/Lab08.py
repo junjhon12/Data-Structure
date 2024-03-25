@@ -80,11 +80,11 @@ class MaxQueue:
     def remove(self):
         # Check if the mainQueue is empty
         if self.mainQueue[0] == self.maxQueue[0]:
-            # Remove the value from the maxQueue
+            # Remove the value from the maxQueue from the left
             self.maxQueue.popleft()
-        # Remove the value from the mainQueue
+        # Remove the value from the mainQueue from the left
         self.mainQueue.popleft()
-    # Get the maximum value from the maxQueue
+    # Get the maximum value from the maxQueue 
     def getMax(self):
         return self.maxQueue[0]
     # Print the mainQueue
