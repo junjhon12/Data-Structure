@@ -222,5 +222,21 @@ while Q:
     # Exit the while loop
 return LOT
 """
+def level_order_traversal(root):
+    level_orders = []
+    queue = collections.deque()
+    queue.append(root)
+    while queue:
+        a_node = queue.popleft()
+        level_orders.append(a_node.value)
+        if a_node.left:
+            queue.append(a_node.left)
+        if a_node.right:
+            queue.append(a_node.right)
+    return level_orders
 
+root = Tree_Node()
+level_orders = level_order_traversal(root)
+# Exit the while loop
+return LOT
 
