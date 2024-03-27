@@ -258,6 +258,9 @@ print(level_order_traversal(root))
 """
 3/27/2024
 
+Binary Tree: 
+- A binary tree is a tree where each node has at most two children, left and right.
+
 Binary Search Tree:
 - A binary search tree is a binary tree where the left child of a node has a value less than the node's value, and the right child has a value greater than the node's value.
 - The left and right subtrees of a node are also binary search trees.
@@ -269,8 +272,9 @@ Root -> 4
 LST -> 2 | RST -> 6
 LST -> 1 RST -> 3 | LST -> 5 RST -> 7
 
-1) Node Level Property: The value of the left child is less than the value of the node, and the value of the right child is greater than the value of the node.
-2) Subtree Level Property: The Node Level Property holds for all nodes in the left and right subtrees. Recursively, the left and right subtrees are also binary search trees.
+[Properties of a Binary Search Tree:]
+1) Node Level Property: The value of the left child is less than or equal the value of the node IF NOT UNIQUE, and the value of the right child is ALWAYS greater than the value of the node.
+2) Subtree Level Property: The left and right subtrees are also binary search trees.
 
 Example of a Wrong Binary Search Tree and a Correct Binary Search Tree:
 Wrong Binary Search Tree: 
@@ -307,11 +311,12 @@ They're used for searching, sorting, and indexing.
 
 If you're trying to find 5.5 in a binary search tree, you would start at the root node, 4. Since 5.5 is greater than 4, you would move to the right child, 6. Since 5.5 is less than 6, you would move to the left child, 5. Since 5.5 is greater than 5, you would move to the right child, 7. Since 5.5 is less than 7, you would move to the left child, which is None. Since the left child is None, you would return False.
 The worst case is the target doesn't exist in the tree, and you have to traverse the entire tree.
-The time complexity is O(log_2 n) for a balanced tree.
+The time complexity is O(log_2 n) since you're cutting the tree in half at each step.
 What if it's not expected to be balanced? The time complexity is O(n) for an unbalanced tree.
 
 Height Balanced Binary Search Tree:
 - A height-balanced binary search tree is a binary search tree where the height of the left and right subtrees of any node differ by at most 1.
+- Also determines the time complexity of searching, inserting, and deleting elements in a binary search tree.
 
 Inserting an element into a binary search tree:
 - Start at the root node.
@@ -366,13 +371,19 @@ Delete the root node:
 Approach 1) Replace the root with the highest element in the left subtree.
 Approach 2) Replace the root with the smallest element in the right subtree.
 
+Industry prefers Approach 2 because it's more efficient since the right subtree is always greater than the left subtree.
+
 Code example:
 def delete_root(root):
     if root is None:
         return root
+        # If the root node has no children, remove the root node.
     if root.left is None:
+    # If the root node has one child, replace the root node with its child.
         return root.right
+        # If the root node has two children, replace the root node with the smallest node in the right subtree.
     if root.right is None:
+    # If the root node has one child, replace the root node with its child.
         return root.left
     root.value = find_min(root.right)
     root.right = delete(root.right, root.value)
@@ -405,7 +416,24 @@ def is_valid_bst(root, min_val = float('-inf'), max_val = float('inf')):
         return False
     return is_valid_bst(root.left, min_val, root.value) and is_valid_bst(root.right, root.value, max_val)
     
-    
+    Validate a binary search tree:
+    code example Iterative:
+def is_valid_bst(root):
+    stack = []
+    current = root
+    prev = None
+    while current or stack:
+        while current:
+            stack.append(current)
+            current = current.left
+        current = stack.pop()
+        if prev and prev.value >= current.value:
+            return False
+        prev = current
+        current = current.right
+    return True
+Time complexity: O(n)
+
 """
 # This is very popular in BIG TECH interviews
 def validBST(node, lower_bound, upper_bound):
@@ -419,3 +447,21 @@ def validBST(node, lower_bound, upper_bound):
     return validBST(node.left, lower_bound, node.value) and validBST(node.right, node.value, upper_bound)
 
 validBST(root, float('-inf'), float('inf'))
+
+# Iterative
+def validBST(node):
+    stack = []
+    current = node
+    prev = None
+    while current or stack:
+        while current:
+            stack.append(current)
+            current = current.left
+        current = stack.pop()
+        if prev and prev.value >= current.value:
+            return False
+        prev = current
+        current = current.right
+    return True
+
+validBST(root)
