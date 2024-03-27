@@ -223,4 +223,34 @@ while Q:
 return LOT
 """
 
+class TreeNode:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+        
+def level_order_traversal(root):
+    LOT = [] #This isn't where time complexity is
+    Q = collections.deque()
+    Q.append(root)
+    while Q:
+        a_node = Q.popleft()
+        LOT.append(a_node.value)
+        # If the left child is not None, append it to the queue
+        if a_node.left:
+            Q.append(a_node.left)
+        # If the right child is not None, append it to the queue
+        if a_node.right:
+            Q.append(a_node.right)
+    # Exit the while loop
+    return LOT
 
+root = TreeNode(4)
+root.left = TreeNode(2)
+root.right = TreeNode(6)
+root.left.left = TreeNode(1)
+root.left.right = TreeNode(3)
+root.right.left = TreeNode(5)
+root.right.right = TreeNode(7)
+
+print(level_order_traversal(root))
