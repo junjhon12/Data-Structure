@@ -12,10 +12,10 @@ Output should be the total distance traveled by the ball.
 
 def bounce_conversion(height, bounce):
     distance = 0
-    bounce_height = height - 4
-    for bounces in range(0, bounce - 1):
-        distance += bounce_height + (bounce * bounce_height)
-        bounce_height *= (bounce_height / height)
+    bounciness = 0.6
+    for bounces in range(bounce):
+        distance += height * bounciness
+        height *= bounciness
         return f'Total distance traveled is {distance}'
     
 print(bounce_conversion(
