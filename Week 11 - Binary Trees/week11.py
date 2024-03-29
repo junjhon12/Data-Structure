@@ -465,3 +465,24 @@ def validBST(node):
     return True
 
 validBST(root)
+
+"""
+Depth First Search:
+- Depth-first search is a graph traversal algorithm that explores as far as possible along each branch before backtracking.
+
+Preorder Traversal:
+- Process the node.
+- Visit the left subtree.
+- Visit the right subtree.
+
+Postorder Traversal:
+- Visit the left subtree.
+- Visit the right subtree.
+- Process the node.
+
+Inorder Traversal:
+- Visit the left subtree.
+- Process the node.
+- Visit the right subtree.
+
+"""
