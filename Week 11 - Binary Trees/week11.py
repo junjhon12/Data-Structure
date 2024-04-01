@@ -204,6 +204,8 @@ def inorder_iterative(root):
             #Space complexity: O(n)
             
     return IOT
+
+
 # LOT(Left Order Traversal) -> 4, 2, 1, 3, 6, 5, 7
 """
 level_Orders = [4, 2, 6, 1, 3, 5, 7]
@@ -486,3 +488,81 @@ Inorder Traversal:
 - Visit the right subtree.
 
 """
+
+def isValid(node, lower_bound, upper_bound):
+    if not node:
+        return True
+    if not lower_bound < upper_bound: #This is a node level property
+        return False
+    return isValid(node.left, lower_bound, node.value) and isValid(node.right, node.value, upper_bound)
+
+    if root == None:
+        return True
+    stack.append([root, float('-ing'), float('inf')])
+    while stack:
+        node, lower_bound, upper_bound = stack.pop()
+        if not (node.value > lower_bound and node.value < upper_bound):
+            return False
+        if node.left:
+            stack.append([node.left, lower_bound, node.value])
+        if node.right:
+            stack.append([node.right, node.value, upper_bound])
+    return True
+
+# Test cases
+node = TreeNode(4)
+node.left = TreeNode(2)
+node.right = TreeNode(6)
+node.left.left = TreeNode(1)
+node.left.right = TreeNode(3)
+node.right.left = TreeNode(5)
+node.right.right = TreeNode(7)
+print(isValid(node, float('-inf'), float('inf')))
+
+
+"""
+k = 2
+if root == None:
+    return None
+current = root
+i = 0
+stack = collections.deque()
+while stack or current:
+    if current:
+        stack.append(current)
+        current = current.left
+    else:
+        current = stack.pop()
+        i += 1
+        if i == k:
+            return current.value
+        current = current.right
+        
+    time complexity: O(n)
+    space complexity: O(n)
+    Memory: O(n)
+"""
+
+import collections
+
+def find_kth_smallest(root, k):
+    if root is None:
+        return None
+    current = root
+    i = 0
+    stack = collections.deque()
+    while stack or current:
+        if current:
+            stack.append(current)
+            current = current.left
+        else:
+            current = stack.pop()
+            i += 1
+            if i == k:
+                return current.value
+            current = current.right
+
+root = TreeNode(4)
+print(find_kth_smallest(root, 2))
+
+#During interview they'll be looking if you can convert a recursive function into an iterative function
