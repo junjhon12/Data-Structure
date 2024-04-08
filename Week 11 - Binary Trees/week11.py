@@ -492,6 +492,7 @@ Inorder Traversal:
 def isValid(node, lower_bound, upper_bound):
     if not node:
         return True
+    # Return False if the node value is not within the lower and upper bounds
     if not lower_bound < upper_bound: #This is a node level property
         return False
     return isValid(node.left, lower_bound, node.value) and isValid(node.right, node.value, upper_bound)
