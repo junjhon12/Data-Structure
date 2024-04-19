@@ -69,7 +69,8 @@ def stack():
     #Print the stack
     print(stack)
     
-print(stack())
+print(stack()) #Output: 3, [1, 2]
+
 
 # As a linked list
 # 1 -> 5 ->3 -> 7 -> Null

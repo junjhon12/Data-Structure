@@ -19,7 +19,7 @@ example:
     1 3 5 7
     
 """
-"""
+
 class Tree_Node:
     def __init__(self, value):
         self.value = value
@@ -32,7 +32,7 @@ class Tree_Node:
         print(self.value)
         if self.right:
             self.right.print_tree()
-"""
+
 
 """
 Find order
@@ -53,7 +53,7 @@ while q:
 # after while block exits
 return result
 """
-"""
+import collections
 root = Tree_Node(4)
 root.left = Tree_Node(2)
 root.right = Tree_Node(6)
@@ -76,7 +76,6 @@ print(result)
 
 #Time complexity: O(n)
 #Space complexity: O(n)
-"""
 
 """
 Simulaion of the code:
@@ -205,6 +204,7 @@ def inorder_iterative(root):
             
     return IOT
 
+print(inorder_iterative(root))
 
 # LOT(Left Order Traversal) -> 4, 2, 1, 3, 6, 5, 7
 """
@@ -437,6 +437,13 @@ def is_valid_bst(root):
 Time complexity: O(n)
 
 """
+root = Tree_Node(4)
+root.left = Tree_Node(2)
+root.right = Tree_Node(6)
+root.left.left = Tree_Node(1)
+root.left.right = Tree_Node(3)
+root.right.left = Tree_Node(5)
+root.right.right = Tree_Node(7)
 # This is very popular in BIG TECH interviews
 def validBST(node, lower_bound, upper_bound):
     # A Null node is a valid BST
