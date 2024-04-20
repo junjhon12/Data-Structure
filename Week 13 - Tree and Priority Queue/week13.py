@@ -104,14 +104,14 @@ visited = set()
 
 dfs stands for Depth First Search
 
-def dfs(node, visited):     Cycle Checking
+def dfs(node, prev, visited):     # Add 'prev' parameter
     if node in visited:
         return False;
     visited.add(node)
     for neighbor in adj_list[node]:
         if neighbor == prev:
             continue
-        if not dfs(neighbor, node):
+        if not dfs(neighbor, node, visited):   # Pass 'visited' as an argument
             return False
     return True
     
@@ -130,6 +130,18 @@ def connected_components(n, edges):
         
     visited = set()
     components = 0
+    
+    def dfs(node, prev):
+        if node in visited:
+            return False
+        visited.add(node)
+        for neighbor in adj_list[node]:
+            if neighbor == prev:
+                continue
+            if not dfs(neighbor, node):
+                return False
+        return True
+    
     for node in range(n):
         if dfs(node, None):
             components += 1
@@ -146,19 +158,18 @@ class Node:
         self.left = None
         self.right = None
 
-    def dfs(node, prev, visited, adj_list):
-        if node in visited:
+def dfs(node, prev, visited, adj_list):
+    if node in visited:
+        return False
+    visited.add(node)
+    for neighbor in adj_list[node]:
+        if neighbor == prev:
+            continue
+        if not self.dfs(neighbor, node, visited, adj_list):  # Fix: Added 'self.' before 'dfs'
             return False
-        visited.add(node)
-        for neighbor in adj_list[node]:
-            if neighbor == prev:
-                continue
-            if not dfs(neighbor, node, visited, adj_list):
-                return False
-            return True
+    return True
         
 
-    
 """
 4/10/2024
 

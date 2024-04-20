@@ -1,5 +1,3 @@
-import collections
-
 
 class Tree_Node:
     def __init__(self, value):
@@ -7,12 +5,12 @@ class Tree_Node:
         self.left = None
         self.right = None
      
-def print_tree(self):
+def print_tree(root):
     result = []
-    q = collections.deque() # Space 
+    q = []  # Use a regular list instead of collections.deque()
     q.append(root)
     while q:
-        var = q.popleft()
+        var = q.pop(0)  # Use pop(0) to remove the first element
         result.append(var.value)
         if var.left:
             q.append(var.left)
@@ -21,8 +19,8 @@ def print_tree(self):
     print(result)
         
 def inorder_iterative(root):
-    list = []
-    deque = collections.deque()
+    result = []
+    deque = []  # Use a regular list instead of collections.deque()
     current = root
     while current or len(deque) > 0:
         if current:
@@ -30,9 +28,9 @@ def inorder_iterative(root):
             current = current.left
         else:
             current = deque.pop()
-            list.append(current.value)
+            result.append(current.value)
             current = current.right
-    return list
+    return result
 
 def insert(root, value):
     if root is None:
@@ -44,17 +42,17 @@ def insert(root, value):
     return root
 
 def level_order_traversal(root):
-    list = []
-    q = collections.deque()
+    result = []
+    q = []  # Use a regular list instead of collections.deque()
     q.append(root)
     while q:
-        current = q.popleft()
-        list.append(current.value)
+        current = q.pop(0)  # Use pop(0) to remove the first element
+        result.append(current.value)
         if current.left:
             q.append(current.left)
         if current.right:
             q.append(current.right)
-    return list
+    return result
 
 def find_min(root):
     current = root
@@ -95,7 +93,7 @@ root.left.left = Tree_Node(1)
 root.left.right = Tree_Node(3)
 root.right.left = Tree_Node(5)
 root.right.right = Tree_Node(7)
-print(print_tree(root))
+print_tree(root)
 print(inorder_iterative(root))
 print(level_order_traversal(root))
 print(find_min(root).value)

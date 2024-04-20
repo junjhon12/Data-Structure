@@ -12,46 +12,18 @@ def stack():
 print(stack())
 print()
 
-class Node:
-    def __init__(self, data):
-        self.data = data
-        self.next = None # This is the pointer to the next node
-
-class Stack():
-    def __init__(self):
-        self.head = None
+# Refactored stack implementation using list
+def stack():
+    stack = []
     
-    def add(self, data):
-        # If the head is empty, create a new node
-        if self.head is None:
-            self.head = Node(data)
-        else:
-            new_node = Node(data)
-            new_node.next = self.head
-            self.head = new_node
-            
-    def remove(self):
-        # If the head is empty, return None
-        if self.head is None:
-            return None
-        else:
-            popped = self.head.data
-            self.head = self.head.next
-            return popped
-        
-    def print_result(self):
-        temp = self.head
-        while temp:
-            print(temp.data, end=" -> ")
-            temp = temp.next
-        print("NULL")
-        
-s = Stack()
-s.add(1)
-s.add(2)
-s.add(3)
-s.remove()
-s.print_result()
+    stack.append(1)
+    stack.append(2)
+    stack.append(3)
+    
+    print(stack.pop(), 'is removed from the stack')
+    print(stack)
+    
+print(stack())
 print()
 
 # Using deque as a queue
@@ -105,8 +77,8 @@ def calculator(expression: str) -> int:
 
     # Container for operators
     operators = ['+', '-', '*', '/']
-    # Deque as a stack
-    stack = deque()
+    # List as a stack
+    stack = []
     # Seperate the expression into a list of elements so we can iterate through them
     split_expression = expression.split(" ")
     # Iterate through the elements

@@ -42,11 +42,9 @@ class LinkedList:
     # This function is to search for a node in the linked list
     def search(self, data):
         cur_node = self.head
-        found = False
         position = 0  # Add the missing variable position
-        while cur_node != None and not found:
+        while cur_node != None:
             if cur_node.index == data:  # Correct the attribute access to cur_node.index
-                found = True
                 return f'{data} is in the list at position {position}'
             else:
                 cur_node = cur_node.next  # Correct the attribute access to cur_node.next
